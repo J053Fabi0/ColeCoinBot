@@ -14,6 +14,9 @@ module.exports = bot => {
 
   const infoDelProyecto = require('../callbackHandlers/infoDelProyecto');
   infoDelProyecto(bot);
+
+  const tutorial = require('../callbackHandlers/tutorial');
+  tutorial(bot);
 }
 
 function start(ctx, shouldEdit) {
