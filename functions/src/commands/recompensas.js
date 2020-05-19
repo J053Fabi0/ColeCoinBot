@@ -35,7 +35,7 @@ function admin(ctx, usersRef) {
           reply_markup: {
             inline_keyboard: [
               [
-                { text: '✅ Listo', callback_data: "recompensado " + doc.id },
+                { text: '☝️ Yo lo hago', callback_data: "recompensado " + doc.id },
               ]
             ]
           },
@@ -82,7 +82,8 @@ function user(ctx, usersRef) {
               [
                 { text: '✅ Sí', callback_data: "comenzarTutorial" }, { text: '⏳ Más tarde', callback_data: "masTarde" }
               ]
-            ]
+            ],
+            remove_keyboard: true
           }
         });
       }

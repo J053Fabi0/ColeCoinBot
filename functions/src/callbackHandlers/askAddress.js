@@ -34,7 +34,7 @@ module.exports = bot => {
             reply_markup: {
               inline_keyboard: [
                 [
-                  { text: '✅ Listo', callback_data: "listo " + user_id },
+                  { text: '☝️ Yo lo hago', callback_data: "listo " + user_id },
                 ]
               ]
             },

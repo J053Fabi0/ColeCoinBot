@@ -51,8 +51,10 @@ startCommand(bot);
 //   next(ctx)
 // })
 
-// bot.launch();
+// Uncomment this when you run firebase serve
+// bot.launch(); 
 
+// Uncomment this when you tun firebase deploy
 exports.bot = functions.https.onRequest((req, res) => {
   bot.handleUpdate(req.body, res)
 });
