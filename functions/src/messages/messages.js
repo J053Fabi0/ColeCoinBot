@@ -29,8 +29,16 @@ Ese bot es nuestro portal directo para comunicarnos contigo. Contestaremos tus d
 
 *Un poco de los fundadores:*
 `
+let huboError = "Hubo un error... Sería muy amable de tu parte si lo reenviaras a nuestro bot de soporte @ColeCoinBot para poder analizarlo.\n\n"
+let sinRecompensas = `
+*¿Quieres ganar algunas recompensas?*
+Comparte con tus amigos el siguiente código, y cuando ellos se registren aquí les preguntaremos si tienen algún código de alguien. ¡Cada persona que ingrese tu código significa un COLE para ti!
+
+  Tu código es: `
 
 exports.startMessage = startMessage;
 exports.infoMessage = infoMessage+desarrollador1;
 exports.tutorial = tutorial;
 exports.contacto = contacto+desarrollador1;
+exports.huboError = huboError;
+exports.sinRecompensas = sinRecompensas;

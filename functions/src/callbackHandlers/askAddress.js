@@ -3,9 +3,10 @@ module.exports = bot => {
 
   bot.hears(/12(.){101}/, ctx => {
     let user_id = ctx.update.message.from.id;
+    let address = ctx.match[0];
     let db = firebase.firestore();
 
-    let usersRef = db.collection('usuarios');
+    let usersRef = db.collection('users');
     let query = usersRef.get()
       .then(snapshot => {
         var foundUser = false
@@ -21,17 +22,30 @@ module.exports = bot => {
           return;
         }
         else {
-          let docRef = db.doc('usuarios/' + user_id);
+          let docRef = db.doc('users/' + user_id);
           let setData = docRef.set({
-            address: ctx.match[0],
+            address: address,
             done: false,
             user_id: user_id,
             invitations: 0
           });
-          ctx.reply("¡Listo! Te mandaremos las 5 COLE en un plazo máximo de 24 horas.\n\nTe mandaremos un mensaje aquí cuando lo hayamos hecho.");
+          ctx.reply("¡Listo! Recibirás 5 COLE en un plazo máximo de 24 horas.\n\nTe mandaremos un mensaje aquí cuando lo hayamos hecho.");
+          
+          bot.telegram.sendMessage(-484205353, "*5 COLE a " + user_id + "*: `" + address + "`", {
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  { text: '✅ Listo', callback_data: "listo " + user_id },
+                ]
+              ]
+            },
+            parse_mode: "Markdown"
+          });
         }
       })
       .catch(err => {
+        const { huboError } = require('../messages/messages');
+        ctx.reply(huboError + err);
         console.log(err);
       })
   })

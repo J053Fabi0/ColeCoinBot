@@ -21,6 +21,13 @@ const app = firebase.initializeApp({
   appId: config.service.appid
 });
 
+// bot.use(ctx => {
+//   console.log(ctx.update)
+// })
+
+const recompensas = require("./src/commands/recompensas");
+recompensas(bot);
+
 const askAdress = require("./src/callbackHandlers/askAddress");
 askAdress(bot);
 
@@ -41,7 +48,7 @@ startCommand(bot);
 //   next(ctx)
 // })
 
-//  bot.launch();
+// bot.launch();
 
 exports.bot = functions.https.onRequest((req, res) => {
   bot.handleUpdate(req.body, res)
