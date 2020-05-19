@@ -29,7 +29,7 @@ function start(ctx, shouldEdit) {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: '📲 Comenzar a usar COLE', callback_data: "comenzarTutorial" },
+          { text: '✅ Comenzar a usar COLE', callback_data: "comenzarTutorial" },
         ],
         [
           { text: '👀 Conocer más sobre el proyecto', callback_data: "infoDelProyecto" },

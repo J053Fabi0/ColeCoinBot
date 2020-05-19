@@ -19,7 +19,7 @@ Primero descarga *Incognito Wallet*. Te dejo los links aquí abajo.
 `
 - En la sección de cartera, añade la moneda COLE.
 - Haz click en ella y en Recibir.
-- Comparte con nosotros tu dirección.
+- Envía un mensaje con la dirección que encontrarás.
 `]
 let desarrollador1 = `@SenorBinario - Soy un estudiante del Tecmilenio. Desarrollé la página web y el bot del proyecto. Soy también fundador del bot @ALaColaJovenBot. Si necesitas un bot o una página web para algún proyecto, puedes mandarme un mensaje.
 `
@@ -38,7 +38,9 @@ Comparte con tus amigos el siguiente código, y cuando ellos se registren aquí 
 let yaDimos5 = `*¡Buenas noticias!* Ya hemos mandado tus primeros 5 COLE. Llegarán a tu cartera en un par de minutos.
 *¡Muchas gracias por ser parte del proyecto!*
 
-No olvides darle un vistazo a las _/recompensas_.`
+No olvides darle un vistazo a las _/recompensas_.
+
+¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot.`
 
 
 exports.startMessage = startMessage;

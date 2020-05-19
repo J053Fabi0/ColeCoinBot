@@ -67,7 +67,7 @@ function user(ctx, usersRef) {
 
       if (exists) {
         const { sinRecompensas } = require('../messages/messages');
-        let message = sinRecompensas + "`" + user_id + "`"
+        let message = sinRecompensas + "`" + user_id + "`\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot."
 
         if (user_doc.invitations != 0) {
           message = "*Tienes " + user_doc.invitations + " recompensa/s en espera.* Cuando te las mandemos te llegará un mensaje, no te preocupes.\n" + message;

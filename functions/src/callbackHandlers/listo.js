@@ -13,9 +13,11 @@ module.exports = bot => {
     let recompensa = ctx.update.callback_query.message.text.split(" ")[2];
     let message = `*¡Buenas noticias!* Ya te hemos mandado tu recompensa de ${recompensa} COLE por invitar gente. Llegará a tu cartera en un par de minutos.
     
-*¡Muchas gracias por apoyar el proyecto!* No dejes de contarle a todos 😉.`
+*¡Muchas gracias por apoyar el proyecto!* No dejes de contarle a todos 😉.
+
+¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot.`
 
     bot.telegram.sendMessage(user_id, message, { parse_mode: "Markdown" });
-    ctx.deleteMessage();
+    rctx.deleteMessage();
   })
 }
