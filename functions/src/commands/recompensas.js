@@ -1,7 +1,7 @@
 module.exports = bot => {
   const firebase = require('firebase');
 
-  bot.command("recompensas", ctx => {
+  bot.command(["recompensas", "recompensas@coaweiyvpawoieabot"], ctx => {
     let chat_id = ctx.update.message.chat.id;
 
     let db = firebase.firestore();
