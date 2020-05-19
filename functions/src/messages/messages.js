@@ -40,6 +40,7 @@ let yaDimos5 = `*¡Buenas noticias!* Ya hemos mandado tus primeros 5 COLE. Llega
 
 No olvides darle un vistazo a las _/recompensas_.`
 
+
 exports.startMessage = startMessage;
 exports.infoMessage = infoMessage+desarrollador1;
 exports.tutorial = tutorial;
