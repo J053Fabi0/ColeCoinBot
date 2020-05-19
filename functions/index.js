@@ -21,6 +21,9 @@ const app = firebase.initializeApp({
   appId: config.service.appid
 });
 
+const askAdress = require("./src/callbackHandlers/askAddress");
+askAdress(bot);
+
 const startCommand = require('./src/commands/start');
 startCommand(bot);
 

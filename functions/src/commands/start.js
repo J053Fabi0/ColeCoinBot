@@ -1,5 +1,5 @@
 module.exports = bot => {
-  bot.command(['start', 'help', 'ayuda'], ctx => {
+  bot.hears(/./, ctx => {
     start(ctx, false);
   })
   bot.action('start', ctx => {
@@ -17,6 +17,9 @@ module.exports = bot => {
 
   const tutorial = require('../callbackHandlers/tutorial');
   tutorial(bot);
+
+  const contacto = require('../callbackHandlers/contacto');
+  contacto(bot);
 }
 
 function start(ctx, shouldEdit) {
