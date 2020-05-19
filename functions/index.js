@@ -25,13 +25,16 @@ const app = firebase.initializeApp({
 //   console.log(ctx.update)
 // })
 
+const listo = require("./src/callbackHandlers/listo");
+listo(bot);
+
 const recompensas = require("./src/commands/recompensas");
 recompensas(bot);
 
 const askAdress = require("./src/callbackHandlers/askAddress");
 askAdress(bot);
 
-const startCommand = require('./src/commands/start');
+const startCommand = require('./src/commands/start'); // Este va hasta el final porque tiene un RegEX que abarca todo
 startCommand(bot);
 
 // bot.use((ctx, next) => {

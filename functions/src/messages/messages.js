@@ -35,6 +35,10 @@ let sinRecompensas = `
 Comparte con tus amigos el siguiente código, y cuando ellos se registren aquí les preguntaremos si tienen algún código de alguien. ¡Cada persona que ingrese tu código significa un COLE para ti!
 
   Tu código es: `
+let yaDimos5 = `*¡Buenas noticias!* Ya hemos mandado tus primeros 5 COLE. Llegarán a tu cartera en un par de minutos.
+*¡Muchas gracias por ser parte del proyecto!*
+
+No olvides darle un vistazo a las _/recompensas_.`
 
 exports.startMessage = startMessage;
 exports.infoMessage = infoMessage+desarrollador1;
@@ -42,3 +46,4 @@ exports.tutorial = tutorial;
 exports.contacto = contacto+desarrollador1;
 exports.huboError = huboError;
 exports.sinRecompensas = sinRecompensas;
+exports.yaDimos5 = yaDimos5;

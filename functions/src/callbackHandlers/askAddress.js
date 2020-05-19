@@ -25,13 +25,12 @@ module.exports = bot => {
           let docRef = db.doc('users/' + user_id);
           let setData = docRef.set({
             address: address,
-            done: false,
             user_id: user_id,
             invitations: 0
           });
           ctx.reply("¡Listo! Recibirás 5 COLE en un plazo máximo de 24 horas.\n\nTe mandaremos un mensaje aquí cuando lo hayamos hecho.");
           
-          bot.telegram.sendMessage(-484205353, "*5 COLE a " + user_id + "*: `" + address + "`", {
+          bot.telegram.sendMessage(-484205353, "*5 COLE a " + user_id + "* : `" + address + "`", {
             reply_markup: {
               inline_keyboard: [
                 [
