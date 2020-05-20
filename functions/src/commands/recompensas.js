@@ -1,13 +1,13 @@
 module.exports = bot => {
   const firebase = require('firebase');
 
-  bot.command(["recompensas", "recompensas@coaweiyvpawoieabot"], ctx => {
+  bot.hears(/recompensa/i, ctx => {
     let chat_id = ctx.update.message.chat.id;
 
     let db = firebase.firestore();
     let usersRef = db.collection('users');
 
-    if (chat_id == "-484205353") {
+    if (chat_id == "-1001482751413") {
       admin(ctx, usersRef);
     }
     else {
@@ -67,7 +67,7 @@ function user(ctx, usersRef) {
 
       if (exists) {
         const { sinRecompensas } = require('../messages/messages');
-        let message = sinRecompensas + "`" + user_id + "`\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot."
+        let message = sinRecompensas + "`" + user_id + "`\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot."
 
         if (user_doc.invitations != 0) {
           message = "*Tienes " + user_doc.invitations + " recompensa/s en espera.* Cuando te las mandemos te llegará un mensaje, no te preocupes.\n" + message;

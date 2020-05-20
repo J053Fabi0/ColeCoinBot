@@ -7,6 +7,7 @@ if (Object.keys(functions.config()).length) {
   config = functions.config();
 }
 
+// Cambiar a token_test cuando se hagan pruebas con el test bot
 const bot = new Telegraf(config.service.token);
 
 const firebase = require('firebase');
@@ -22,11 +23,14 @@ const app = firebase.initializeApp({
 });
 
 // bot.use(ctx => {
-//   console.log(ctx.update)
+//   console.log(ctx.match)
 // })
 
 const listo = require("./src/callbackHandlers/listo");
 listo(bot);
+
+const codigoInvitacion = require("./src/callbackHandlers/codigoInvitacion");
+codigoInvitacion(bot);
 
 const recompensas = require("./src/commands/recompensas");
 recompensas(bot);

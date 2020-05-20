@@ -66,7 +66,7 @@ module.exports = bot => {
     
 *¡Muchas gracias por apoyar el proyecto!* No dejes de contarle a todos 😉.
 
-¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot.`
+¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.`
 
               if (user_doc.invitations - recompensa == 0) {
                 usersRef.doc(user_id).update({ invitations: 0 });
@@ -80,7 +80,7 @@ Todavía tienes ${user_doc.invitations - recompensa} recompensa/s en espera. Lle
 
 *¡Muchas gracias por apoyar el proyecto!* No dejes de contarle a todos 😉.
 
-¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot.`
+¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.`
                 ctx.editMessageText(ctx.update.callback_query.message.text + "\n\nEntrega " + (user_doc.invitations - recompensa) + " más a esa persona.", {
                   reply_markup: {
                     inline_keyboard: [

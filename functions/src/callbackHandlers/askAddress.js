@@ -8,7 +8,7 @@ module.exports = bot => {
 
     let usersRef = db.collection('users');
     let query = usersRef.get()
-      .then(snapshot => {
+      .then( async snapshot => {
         var foundUser = false
         snapshot.forEach(doc => {
           if (user_id == doc.id) {
@@ -18,7 +18,7 @@ module.exports = bot => {
         });
 
         if (foundUser) {
-          ctx.reply("Hmm... Lo lamento, pero con esta cuenta de Telegram ya has pedido 5 COLEs.\n\n¿Estás intentando conseguir 5 COLEs para un amigo? Pídele que descargue Telegram y podrás ganar tú un COLE si él ingresa tu id: `" + user_id + "` cuando le preguntemos si alguien lo invitó.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinBot.", { parse_mode: "Markdown" })
+          ctx.reply("Hmm... Lo lamento, pero con esta cuenta de Telegram ya has pedido 5 COLEs.\n\n¿Estás intentando conseguir 5 COLEs para un amigo? Pídele que descargue Telegram y podrás ganar tú un COLE si él ingresa tu id: `" + user_id + "` cuando le preguntemos si alguien lo invitó.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.", { parse_mode: "Markdown" })
           return;
         }
         else {
@@ -26,11 +26,13 @@ module.exports = bot => {
           let setData = docRef.set({
             address: address,
             user_id: user_id,
-            invitations: 0
+            invitations: 0,
+            has_been_invited: false
           });
-          ctx.reply("¡Listo! Recibirás 5 COLE en un plazo máximo de 24 horas.\n\nTe mandaremos un mensaje aquí cuando lo hayamos hecho.");
+          await ctx.reply("*¡Listo!* Recibirás 5 COLE en un plazo máximo de 24 horas.\nTe mandaremos un mensaje aquí cuando lo hayamos hecho.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.", {parse_mode: "Markdown"});
+          ctx.reply("*Si tienes un código de invitación, es el momento de enviarlo.*\n¿Qué es un código de invitación?\nPuedes usar el comando /recompensas para obtener más información y el tuyo pripio.", {parse_mode: "Markdown"});
           
-          bot.telegram.sendMessage(-484205353, "*5 COLE a " + user_id + "* : `" + address + "`", {
+          bot.telegram.sendMessage(-1001482751413, "*5 COLE a " + user_id + "* : `" + address + "`", {
             reply_markup: {
               inline_keyboard: [
                 [

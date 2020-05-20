@@ -23,7 +23,11 @@ module.exports = bot => {
 }
 
 function start(ctx, shouldEdit) {
-  let chat_type = ctx.update.message.chat.type;
+  let chat_type = "private"
+  if (ctx.update.message != undefined) {
+    chat_type = ctx.update.message.chat.type;
+  }
+   
   if (chat_type == "private") {
     const { startMessage } = require('../messages/messages');
 
