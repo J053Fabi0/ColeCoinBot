@@ -12,13 +12,13 @@ module.exports = bot => {
     start(ctx, false);
   })
 
-  const infoDelProyecto = require('../callbackHandlers/infoDelProyecto');
+  const infoDelProyecto = require('./menu/infoDelProyecto');
   infoDelProyecto(bot);
 
-  const tutorial = require('../callbackHandlers/tutorial');
+  const tutorial = require('./menu/tutorial');
   tutorial(bot);
 
-  const contacto = require('../callbackHandlers/contacto');
+  const contacto = require('./menu/contacto');
   contacto(bot);
 }
 
@@ -27,7 +27,7 @@ function start(ctx, shouldEdit) {
   if (ctx.update.message != undefined) {
     chat_type = ctx.update.message.chat.type;
   }
-   
+
   if (chat_type == "private") {
     const { startMessage } = require('../messages/messages');
 

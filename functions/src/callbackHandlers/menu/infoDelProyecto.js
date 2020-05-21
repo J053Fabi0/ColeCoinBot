@@ -1,8 +1,8 @@
 module.exports = bot => {
-  const { contacto } = require('../messages/messages');
+  const { infoMessage } = require('../../messages/messages');
 
-  bot.action('contacto', ctx => {
-    ctx.editMessageText(contacto, {
+  bot.action('infoDelProyecto', ctx => {
+    ctx.editMessageText(infoMessage, {
       reply_markup: {
         inline_keyboard: [
           [
@@ -10,7 +10,7 @@ module.exports = bot => {
           ]
         ]
       },
-      parse_mode: "Markdown" 
+      parse_mode: "Markdown"
     });
     ctx.answerCbQuery();
   })
