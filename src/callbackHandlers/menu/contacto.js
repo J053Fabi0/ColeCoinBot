@@ -1,4 +1,4 @@
-module.exports = bot => {
+module.exports = (bot, db) => {
   const { contacto } = require('../../messages/messages');
 
   bot.action('contacto', ctx => {
@@ -10,7 +10,7 @@ module.exports = bot => {
           ]
         ]
       },
-      parse_mode: "Markdown"
+      parse_mode: "Markdown" 
     });
     ctx.answerCbQuery();
   })

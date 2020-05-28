@@ -16,7 +16,7 @@ let tutorial = [`
 - La app creará una cartera virtual que no estará asociada a ti de ninguna forma, por lo que será totalmente anónima. No te pedirá datos personales.
 - Pesa solo 43MB aprox. En perspectiva, Facebook pesa 57MB, un juego en promedio pesa 100MB.
 `,
-  `
+`
 - En la sección de cartera, añade la moneda COLE.
 - Haz click en ella y en Recibir.
 - Envía un mensaje con la dirección que encontrarás.

@@ -1,27 +1,24 @@
-const axios = require('axios');
-
-module.exports = bot => {
+module.exports = (bot, db) => {
   bot.action("recargarRecompensasAdmin", ctx => {
     let chat_id = ctx.update.callback_query.message.chat.id;
 
     if (chat_id == "-1001482751413") {
-      admin(ctx, bot);
+      admin(ctx, db);
     }
     else {
-      ctx.reply("`Dame un segundo...`", { parse_mode: "Markdown" });
-      user(ctx, bot);
+      ctx.reply("`Dame un segundo...`", {parse_mode: "Markdown"});
+      user(ctx, db);
     }
   })
-
+  
   bot.hears(/recompensa/i, ctx => {
     let chat_id = ctx.update.message.chat.id;
 
     if (chat_id == "-1001482751413") {
-      admin(ctx, bot);
+      admin(ctx, db);
     }
     else {
-      ctx.reply("`Dame un segundo...`", { parse_mode: "Markdown" });
-      user(ctx, bot);
+      user(ctx, db);
     }
   })
 
@@ -32,76 +29,65 @@ module.exports = bot => {
   })
 }
 
-async function admin(ctx, bot) {
+function admin(ctx, db) {
   ctx.deleteMessage();
-  try {
-    let users = await axios.get(process.env.api_url + 'getMissingUsers?api_key=' + process.env.api_key);
-    users = users.data
-
-    if (users != "No hay cuentas pendientes") {
+  db.find( { invitations: { $gte : 1 } }, (err, users) => {
+    if (users.length != 0) {
       users.forEach(doc => {
         ctx.reply("*Recompensa con " + doc.invitations + " COLE a* `" + doc.address + "`", {
           reply_markup: {
             inline_keyboard: [
               [
-                { text: '☝️ Yo lo hago', callback_data: "recompensado " + doc.user_id + " " + doc.invitations },
+                { text: '☝️ Yo lo hago', callback_data: "recompensado " + doc._id + " " + doc.invitations},
               ]
             ]
           },
           parse_mode: "Markdown"
         });
       })
-    }
-    else {
-      ctx.reply(users, {
+      ctx.reply(".", {
         reply_markup: {
           inline_keyboard: [[{ text: '🔄 Recargar 🔄', callback_data: "recargarRecompensasAdmin" }]]
         },
       });
     }
-  }
-  catch (err) {
-    const { huboError } = require('../messages/messages');
-    ctx.reply(huboError + err);
-    console.log(err);
-  }
+    else {
+      ctx.reply("No hay cuentas pendientes", {
+        reply_markup: {
+          inline_keyboard: [[{ text: '🔄 Recargar 🔄', callback_data: "recargarRecompensasAdmin" }]]
+        },
+      });
+    }
+  }) 
 }
 
-async function user(ctx, bot) {
-  let user_id = ctx.update.message.from.id;
-  try {
-    let user = await axios.get(process.env.api_url + 'getUser?user_id=' + user_id + "&api_key=" + process.env.api_key);
-    user = user.data
-    if (user != "Usuario no encontrado") {
+function user(ctx, db) {  
+  let user_id = Number(ctx.update.message.from.id);
+  
+  db.findOne( { _id: user_id }, (err, user) => {
+    if (user) {
       const { sinRecompensas } = require('../messages/messages');
       let message = sinRecompensas + "`" + user_id + "`\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot."
-
+      
       if (user.invitations != 0) {
-        message = "*Tienes " + user.invitations + ` recompensa${((user.invitations == 1) ? '' : 's')} en espera.* Cuando te las mandemos te llegará un mensaje, no te preocupes.\n` + message;
+        message = "*Tienes " + user.invitations + ` recompensa${((user.invitations == 1) ? '' : 's')} en espera.* Cuando te la${((user.invitations == 1) ? '' : 's')} mandemos te llegará un mensaje, no te preocupes.\n` + message;
       }
 
-      bot.telegram.editMessageText(ctx.update.message.chat.id, ctx.update.message.message_id + 1, ctx.update.message.message_id + 1,
-        message, { parse_mode: "Markdown" });
+      ctx.reply(message, { parse_mode: "Markdown" });
     }
     else {
       const { masTardeRecompensa } = require('../messages/messages');
-      bot.telegram.editMessageText(ctx.update.message.chat.id, ctx.update.message.message_id + 1, ctx.update.message.message_id + 1,
-        masTardeRecompensa, {
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: '✅ Sí', callback_data: "comenzarTutorial" }, { text: '⏳ Más tarde', callback_data: "masTarde" }
-            ]
-          ],
-          remove_keyboard: true
-        }
-      });
+      ctx.reply(masTardeRecompensa, {
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: '✅ Sí', callback_data: "comenzarTutorial" }, { text: '⏳ Más tarde', callback_data: "masTarde" }
+              ]
+            ],
+            remove_keyboard: true
+          }
+        });
     }
-  }
-  catch (err) {
-    const { huboError } = require('../messages/messages');
-    ctx.reply(huboError + err);
-    console.log(err);
-  }
+  })
 }
 

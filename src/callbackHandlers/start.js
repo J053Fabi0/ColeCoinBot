@@ -1,4 +1,4 @@
-module.exports = bot => {
+module.exports = (bot, db) => {
   bot.hears(/./, ctx => {
     start(ctx, false);
   })
@@ -13,13 +13,13 @@ module.exports = bot => {
   })
 
   const infoDelProyecto = require('./menu/infoDelProyecto');
-  infoDelProyecto(bot);
+  infoDelProyecto(bot, db);
 
   const tutorial = require('./menu/tutorial');
-  tutorial(bot);
+  tutorial(bot, db);
 
   const contacto = require('./menu/contacto');
-  contacto(bot);
+  contacto(bot, db);
 }
 
 function start(ctx, shouldEdit) {
@@ -27,7 +27,7 @@ function start(ctx, shouldEdit) {
   if (ctx.update.message != undefined) {
     chat_type = ctx.update.message.chat.type;
   }
-
+   
   if (chat_type == "private") {
     const { startMessage } = require('../messages/messages');
 

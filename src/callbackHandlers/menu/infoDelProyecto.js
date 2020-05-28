@@ -1,4 +1,4 @@
-module.exports = bot => {
+module.exports = (bot, db) => {
   const { infoMessage } = require('../../messages/messages');
 
   bot.action('infoDelProyecto', ctx => {
