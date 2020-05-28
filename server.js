@@ -58,5 +58,3 @@ const start = require("./src/callbackHandlers/start"); // Este va hasta el final
 start(bot, db);
 
 bot.launch();
-
-
