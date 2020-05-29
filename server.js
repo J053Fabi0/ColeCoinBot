@@ -17,6 +17,10 @@ app.use(express.static("public"));
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/index.html"); 
 });
+
+app.get("/bot", (request, response) => {
+  bot.handleUpdate(request.body, response)
+});
 const listener = app.listen(process.env.PORT);
 
 const Nedb = require('nedb');
