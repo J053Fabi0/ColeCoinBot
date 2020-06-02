@@ -57,5 +57,6 @@ recompensas(bot, db);
 const start = require("./src/callbackHandlers/start"); // Este va hasta el final porque tiene un RegEX que abarca todo
 start(bot, db);
 
-bot.launch();
+// bot.launch();
 
+app.use(bot.webhookCallback('/webhook'))
