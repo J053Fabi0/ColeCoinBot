@@ -56,9 +56,9 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 app.post('/webhook', (req, res) => {
-  res.sendStatus(200)
+  bot.handleUpdate(req.body, res)
 })
-app.use(bot.webhookCallback('/webhook'))
+//app.use(bot.webhookCallback('/webhook'))
 
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/index.html"); 
