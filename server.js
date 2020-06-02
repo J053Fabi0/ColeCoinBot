@@ -10,18 +10,6 @@ bot.catch((err, ctx) => {
   console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
 })
 
-// Esta parte da una respuesta a las llamadas HTTPS y que UptimeRobot no de error al hacer ping
-const express = require("express");
-const app = express();
-app.use(express.static("public"));
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/index.html"); 
-});
-
-app.get("/bot", (request, response) => {
-  bot.handleUpdate(request.body, response)
-});
-const listener = app.listen(process.env.PORT);
 
 const Nedb = require('nedb');
 const db = new Nedb({ filename: process.env.PWD + '/users.db', autoload: true });
@@ -63,4 +51,14 @@ start(bot, db);
 
 // bot.launch();
 
+// Esta parte da una respuesta a las llamadas HTTPS y que UptimeRobot no de error al hacer ping
+const express = require("express");
+const app = express();
+app.use(express.static("public"));
 app.use(bot.webhookCallback('/webhook'))
+
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/index.html"); 
+});
+
+const listener = app.listen(process.env.PORT);
