@@ -56,7 +56,7 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 app.post('/webhook', (req, res) => {
-  console.log('Listen')
+  res.sendStatus(200)
 })
 app.use(bot.webhookCallback('/webhook'))
 
