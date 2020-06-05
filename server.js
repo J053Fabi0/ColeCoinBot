@@ -2,16 +2,16 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // const functions = require('firebase-functions');
-const db = require('firebase');
+const firebase = require('firebase');
 
-const app = db.initializeApp({
-    apiKey: process.env.apikey,
-    authDomain: process.env.authdomain,
-    databaseURL: process.env.databaseurl,
-    projectId: process.env.projectid,
-    storageBucket: process.env.storagebucket,
-    messagingSenderId: process.env.messagingsenderid,
-    appId: process.env.appid
+const appFB = firebase.initializeApp({
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId: process.env.appId
 });
 
 const Telegraf = require("telegraf");
@@ -44,22 +44,22 @@ const admins = [861616600, 801112961]
 const testers = [861616600, 843396996, 801112961]
 
 const admin = require("./src/callbackHandlers/admin/admin");
-admin(bot, db, admins);
+// admin(bot, db, admins);
 
 const listo = require("./src/callbackHandlers/listo");
-listo(bot, db);
+// listo(bot, db);
 
 const codigoInvitacion = require("./src/callbackHandlers/codigoInvitacion");
-codigoInvitacion(bot, db);
+// codigoInvitacion(bot, db);
 
 const askAdress = require("./src/callbackHandlers/askAddress");
-askAdress(bot, db);
+// askAdress(bot, db);
 
 const recompensas = require("./src/callbackHandlers/recompensas");
-recompensas(bot, db);
+// recompensas(bot, db);
 
 const start = require("./src/callbackHandlers/start"); // Este va hasta el final porque tiene un RegEX que abarca todo
-start(bot, db);
+// start(bot, db);
 
 // Esta parte da una respuesta a las llamadas HTTPS y que UptimeRobot no de error al hacer ping
 const express = require("express");
@@ -71,8 +71,10 @@ app.get("/", (request, response) => {
     response.sendFile(__dirname + "/index.html"); 
 });
 
+let db = firebase.firestore();
 let usersRef = db.collection('users');
 app.get("setUser", (req, res) => {
+    let user_id = "user_id"
     // let user_id = req.query.user_id;
     // let address = req.query.address;
     
@@ -83,7 +85,7 @@ app.get("setUser", (req, res) => {
             invitations: 0,
             has_been_invited: false
         });
-        res.send("Hecho: " + user_id + " " + address);
+        res.send("Hecho: " + user_id + " ");
     }
     catch (err) {
         res.send(err);
@@ -91,3 +93,5 @@ app.get("setUser", (req, res) => {
 });
 
 const listener = app.listen(process.env.PORT);
+
+// bot.launch();
