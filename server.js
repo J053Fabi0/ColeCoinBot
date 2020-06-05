@@ -13,6 +13,8 @@ const appFB = firebase.initializeApp({
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId
 });
+let db = firebase.firestore();
+let usersRef = db.collection('users');
 
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.token);
@@ -22,9 +24,6 @@ bot.catch((err, ctx) => {
     ctx.reply(huboError + err);
     console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
 })
-
-// const Nedb = require('nedb');
-// const db = new Nedb({ filename: process.env.PWD + '/users.db', autoload: true });
 
 // bot.use((ctx, next) => {
 //     // Stickers
@@ -44,22 +43,22 @@ const admins = [861616600, 801112961]
 const testers = [861616600, 843396996, 801112961]
 
 const admin = require("./src/callbackHandlers/admin/admin");
-// admin(bot, db, admins);
+// admin(bot, usersRef, admins);
 
 const listo = require("./src/callbackHandlers/listo");
-// listo(bot, db);
+// listo(bot, usersRef);
 
 const codigoInvitacion = require("./src/callbackHandlers/codigoInvitacion");
-// codigoInvitacion(bot, db);
+// codigoInvitacion(bot, usersRef);
 
 const askAdress = require("./src/callbackHandlers/askAddress");
-// askAdress(bot, db);
+// askAdress(bot, usersRef);
 
 const recompensas = require("./src/callbackHandlers/recompensas");
-// recompensas(bot, db);
+// recompensas(bot, usersRef);
 
 const start = require("./src/callbackHandlers/start"); // Este va hasta el final porque tiene un RegEX que abarca todo
-start(bot, db);
+start(bot, usersRef);
 
 // Esta parte da una respuesta a las llamadas HTTPS y que UptimeRobot no de error al hacer ping
 const express = require("express");
@@ -71,25 +70,23 @@ app.get("/", (request, response) => {
     response.sendFile(__dirname + "/index.html"); 
 });
 
-let db = firebase.firestore();
-let usersRef = db.collection('users');
-app.get("/setUser", (req, res) => {
-    let user_id = "user_id"
-    // let user_id = req.query.user_id;
-    // let address = req.query.address;
+// app.get("/setUser", (req, res) => {
+//     let user_id = "user_id"
+//     // let user_id = req.query.user_id;
+//     // let address = req.query.address;
     
-    try {
-        usersRef.doc(user_id).set({
-            address: "Hola",
-            user_id: "01409831",
-            invitations: 0,
-            has_been_invited: false
-        });
-        res.send("Hecho: " + user_id + " ");
-    }
-    catch (err) {
-        res.send(err);
-    }
-});
+//     try {
+//         usersRef.doc(user_id).set({
+//             address: "Hola",
+//             user_id: "01409831",
+//             invitations: 0,
+//             has_been_invited: false
+//         });
+//         res.send("Hecho: " + user_id + " ");
+//     }
+//     catch (err) {
+//         res.send(err);
+//     }
+// });
 
 const listener = app.listen(process.env.PORT);

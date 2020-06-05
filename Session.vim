@@ -33,12 +33,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 81 - ((17 * winheight(0) + 18) / 37)
+let s:l = 62 - ((25 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-81
-normal! 09|
+62
+normal! 0
 tabedit src/callbackHandlers/askAddress.js
 set splitbelow splitright
 set nosplitbelow
