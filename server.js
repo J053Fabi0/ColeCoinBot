@@ -73,7 +73,7 @@ app.get("/", (request, response) => {
 
 let db = firebase.firestore();
 let usersRef = db.collection('users');
-app.get("setUser", (req, res) => {
+app.get("/setUser", (req, res) => {
     let user_id = "user_id"
     // let user_id = req.query.user_id;
     // let address = req.query.address;
