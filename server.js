@@ -59,7 +59,7 @@ const recompensas = require("./src/callbackHandlers/recompensas");
 // recompensas(bot, db);
 
 const start = require("./src/callbackHandlers/start"); // Este va hasta el final porque tiene un RegEX que abarca todo
-// start(bot, db);
+start(bot, db);
 
 // Esta parte da una respuesta a las llamadas HTTPS y que UptimeRobot no de error al hacer ping
 const express = require("express");
@@ -93,5 +93,3 @@ app.get("/setUser", (req, res) => {
 });
 
 const listener = app.listen(process.env.PORT);
-
-// bot.launch();
