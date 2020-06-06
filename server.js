@@ -2,28 +2,28 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // const functions = require('firebase-functions');
-const firebase = require('firebase');
+const firebase = require("firebase");
 
 const appFB = firebase.initializeApp({
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    databaseURL: process.env.databaseURL,
-    projectId: process.env.projectId,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId,
-    appId: process.env.appId
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
 });
 let db = firebase.firestore();
-let usersRef = db.collection('users');
+let usersRef = db.collection("users");
 
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.token);
 
 bot.catch((err, ctx) => {
-    const { huboError } = require('./src/messages/messages');
-    ctx.reply(huboError + err);
-    console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
-})
+  const { huboError } = require("./src/messages/messages");
+  ctx.reply(huboError + err);
+  console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
+});
 
 // bot.use((ctx, next) => {
 //     // Stickers
@@ -39,20 +39,20 @@ bot.catch((err, ctx) => {
 //     next(ctx)
 // })
 
-const admins = [861616600, 801112961]
-const testers = [861616600, 843396996, 801112961]
+const admins = [861616600, 801112961];
+const testers = [861616600, 843396996, 801112961];
 
 const admin = require("./src/callbackHandlers/admin/admin");
 // admin(bot, usersRef, admins);
 
 const listo = require("./src/callbackHandlers/listo");
-// listo(bot, usersRef);
+listo(bot, usersRef);
 
 const codigoInvitacion = require("./src/callbackHandlers/codigoInvitacion");
 // codigoInvitacion(bot, usersRef);
 
 const askAdress = require("./src/callbackHandlers/askAddress");
-// askAdress(bot, usersRef);
+askAdress(bot, usersRef);
 
 const recompensas = require("./src/callbackHandlers/recompensas");
 // recompensas(bot, usersRef);
@@ -64,17 +64,17 @@ start(bot, usersRef);
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
-app.use(bot.webhookCallback('/webhook'))
+app.use(bot.webhookCallback("/webhook"));
 
 app.get("/", (request, response) => {
-    response.sendFile(__dirname + "/index.html"); 
+  response.sendFile(__dirname + "/index.html");
 });
 
 // app.get("/setUser", (req, res) => {
 //     let user_id = "user_id"
 //     // let user_id = req.query.user_id;
 //     // let address = req.query.address;
-    
+
 //     try {
 //         usersRef.doc(user_id).set({
 //             address: "Hola",
@@ -89,4 +89,7 @@ app.get("/", (request, response) => {
 //     }
 // });
 
-const listener = app.listen(process.env.PORT);
+app.listen(process.env.PORT);
+
+// bot.launch();
+

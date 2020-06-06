@@ -7,12 +7,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +72 server.js
-badd +0 src/callbackHandlers/askAddress.js
+badd +49 server.js
+badd +13 src/callbackHandlers/askAddress.js
 badd +0 src/callbackHandlers/codigoInvitacion.js
-badd +0 src/callbackHandlers/listo.js
+badd +49 src/callbackHandlers/listo.js
 badd +0 src/callbackHandlers/recompensas.js
-badd +0 src/callbackHandlers/start.js
+badd +37 src/callbackHandlers/start.js
 badd +0 Procfile
 badd +20 package.json
 badd +5 firebase.json
@@ -33,60 +33,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 62 - ((25 * winheight(0) + 19) / 38)
+let s:l = 49 - ((17 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
+49
 normal! 0
-tabedit src/callbackHandlers/askAddress.js
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-let s:l = 29 - ((28 * winheight(0) + 15) / 30)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-29
-normal! 024|
-tabedit src/callbackHandlers/start.js
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-let s:l = 57 - ((29 * winheight(0) + 15) / 31)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-57
-normal! 05|
-tabedit src/callbackHandlers/recompensas.js
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-let s:l = 91 - ((28 * winheight(0) + 15) / 31)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-91
-normal! 05|
 tabedit src/callbackHandlers/listo.js
 set splitbelow splitright
 set nosplitbelow
@@ -97,12 +49,44 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 117 - ((28 * winheight(0) + 15) / 30)
+let s:l = 46 - ((15 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-117
-normal! 05|
+46
+normal! 021|
+tabedit src/callbackHandlers/askAddress.js
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+let s:l = 35 - ((34 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+35
+normal! 033|
+tabedit src/callbackHandlers/recompensas.js
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+let s:l = 30 - ((29 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+30
+normal! 0
 tabedit src/callbackHandlers/codigoInvitacion.js
 set splitbelow splitright
 set nosplitbelow
@@ -119,7 +103,7 @@ exe s:l
 normal! zt
 56
 normal! 06|
-tabnext 1
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
