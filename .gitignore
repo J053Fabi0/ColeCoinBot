@@ -9,6 +9,9 @@ firebase-debug.log*
 # Vim
 *.vim
 
+# config files
+config
+
 # Firebase cache
 .firebase/
 

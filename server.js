@@ -13,6 +13,7 @@ const appFB = firebase.initializeApp({
   messagingSenderId: process.env.messagingSenderId,
   appId: process.env.appId,
 });
+
 let db = firebase.firestore();
 let usersRef = db.collection("users");
 
@@ -42,8 +43,8 @@ bot.catch((err, ctx) => {
 const admins = [861616600, 801112961];
 const testers = [861616600, 843396996, 801112961];
 
-const admin = require("./src/callbackHandlers/admin/admin");
-// admin(bot, usersRef, admins);
+const adminControls = require("./src/callbackHandlers/admin/admin");
+// adminControls(bot, usersRef, admins);
 
 const listo = require("./src/callbackHandlers/listo");
 listo(bot, usersRef);
@@ -91,5 +92,5 @@ app.get("/", (request, response) => {
 
 app.listen(process.env.PORT);
 
-// bot.launch();
+bot.launch();
 
