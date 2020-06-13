@@ -75,8 +75,11 @@ module.exports = (bot, usersRef) => {
 
             if (recompensasActuales - recompensaADar <= 0) {
               usersRef.doc(user_id).update({ invitations: 0 });
-              console.log(ctx.update.callback_query.message);
-              await ctx.deleteMessage();
+              // console.log(ctx.update.callback_query.message);
+              bot.telegram.deleteMessage(
+                ctx.update.callback_query.chat.id,
+                ctx.update.callback_query.message_id
+              );
             } else {
               usersRef.doc(user_id).update({
                 invitations: recompensasActuales - recompensaADar,
