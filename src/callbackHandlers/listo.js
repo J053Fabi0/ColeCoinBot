@@ -14,7 +14,7 @@ module.exports = (bot, usersRef) => {
           ctx.update.callback_query.message.message_id,
           { disable_notification: true }
         );
-        ctx.deleteMessage();
+        await ctx.deleteMessage();
       } catch (err) {
         const { huboError } = require("../messages/messages");
         ctx.reply(huboError + err);
@@ -56,7 +56,7 @@ module.exports = (bot, usersRef) => {
 
       usersRef
         .get()
-        .then((snapshot) => {
+        .then(async (snapshot) => {
           var user_doc = null;
           snapshot.forEach((doc) => {
             if (doc.id == user_id) {
@@ -75,7 +75,7 @@ module.exports = (bot, usersRef) => {
 
             if (recompensasActuales - recompensaADar <= 0) {
               usersRef.doc(user_id).update({ invitations: 0 });
-              ctx.deleteMessage();
+              await ctx.deleteMessage();
             } else {
               usersRef.doc(user_id).update({
                 invitations: recompensasActuales - recompensaADar,
