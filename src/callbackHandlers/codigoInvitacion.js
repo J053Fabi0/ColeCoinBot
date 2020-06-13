@@ -3,7 +3,8 @@ module.exports = (bot, usersRef) => {
 
   bot.action("masTardeInvitacion", async (ctx) => {
     ctx.editMessageText(masTardeInvitacion);
-    ctx.reply(
+    bot.telegram.sendMessage(
+      ctx.update.message.chat.id,
       "De acuerdo. Si cambias de opinión, cualquier mensaje activa el menú principal. ¡Que tengas un lindo día!"
     );
   });
@@ -12,9 +13,15 @@ module.exports = (bot, usersRef) => {
     let user_id = ctx.update.message.from.id;
     let match = ctx.match[0];
 
-    // const msgInfo = await ctx.reply("`Dame un segundo...`", {
-    //   parse_mode: "Markdown",
-    // });
+    const msgInfo = await bot.telegram.sendMessage(
+      ctx.update.message.chat.id,
+      "`Dame un segundo...`",
+      {
+        parse_mode: "Markdown",
+      }
+    );
+
+    console.log(msgInfo);
 
     await usersRef.get().then(async (snapshot) => {
       var doc = null;
