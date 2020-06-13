@@ -145,7 +145,7 @@ function user(ctx, usersRef) {
         });
       }
     })
-    .catch((err) => {
+    .catch(async (err) => {
       const { huboError } = require("../messages/messages");
       await ctx.reply(huboError + err);
       console.log(err);
