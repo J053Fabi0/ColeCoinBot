@@ -3,11 +3,9 @@ module.exports = (bot, usersRef) => {
     let user_id = ctx.update.message.from.id.toString();
     let address = ctx.match[0];
 
-    console.log("Entró al bot.hears");
     usersRef
       .get()
       .then(async (snapshot) => {
-        console.log("Entró al then");
         let foundUser = false;
         snapshot.forEach((doc) => {
           if (user_id == doc.id) {
@@ -23,6 +21,7 @@ module.exports = (bot, usersRef) => {
           id: user_id,
         };
 
+        console.log(foundUser);
         if (foundUser) {
           ctx.reply(
             "<b>Hmm... Con esta cuenta de Telegram ya has pedido 5 COLEs.\n\n¿Estás intentando conseguir 5 COLEs para un amigo? <u>¡Pues es tu oportunidad de ganar una recompensa!</u></b> Usa el comando /recompensas para conocer más.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
