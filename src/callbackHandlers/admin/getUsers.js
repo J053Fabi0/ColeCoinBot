@@ -25,7 +25,7 @@ module.exports = (bot, db, admins) => {
         .get()
         .then((user) => {
           if (user) {
-            return "`" + (user, null, 1) + "`";
+            return "`" + (user.doc, null, 1) + "`";
           } else {
             return "El usuario con ese id no existe";
           }
