@@ -38,7 +38,7 @@ let sinRecompensas = `
 Comparte con tus amigos el siguiente código, y cuando ellos se registren aquí, podrán ingresarlo. ¡Cada persona que ingrese tu código significa un COLE para ti!
 
   Tu código es: `;
-let yaDimos5 = `*¡Buenas noticias!* Ya hemos mandado tus primeros 5 COLE. También te hemos mandado 0.001 PRV, que usarás para pagar los costos de las transferencias. Con 0.001 PRV podrás hacer cerca de 125,000 transacciones. Llegarán a tu cartera en un par de minutos.
+let yaDimos5 = `*¡Buenas noticias!* Ya hemos mandado tus primeros 5 COLE. También te hemos mandado 0.001 PRV, que usarás para pagar los costos de las transferencias que hagas con COLE. Con 0.001 PRV podrás hacer cerca de ¡*125,000 transacciones*! Llegarán a tu cartera en un par de minutos.
 *¡Muchas gracias por ser parte del proyecto!*
 Si quieres recargar el saldo de tus monedas, desliza el dedo hacia abajo en la cartera.
 
