@@ -16,7 +16,7 @@ module.exports = (bot, db) => {
     if (chat_id == "-1001482751413") {
       admin(ctx, db);
     } else {
-      user(ctx, db);
+      await user(ctx, db);
     }
   });
 
