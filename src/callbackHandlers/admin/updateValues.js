@@ -25,7 +25,7 @@ module.exports = (bot, db, admins) => {
         invitations: new_value,
       })
       .then(function () {
-        console.log("Document successfully updated!");
+        await bot.telegram.sendMessage(ctx.update.message.chat.id, "Listo");
       })
       .catch(function (error) {
         // The document probably doesn't exist.
