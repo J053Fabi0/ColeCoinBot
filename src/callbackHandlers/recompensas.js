@@ -100,7 +100,7 @@ function user(ctx, usersRef) {
 
   usersRef
     .get()
-    .then((async snapshot) => {
+    .then(async (snapshot) => {
       var user = null;
       snapshot.forEach((doc) => {
         if (doc.id == user_id) {
