@@ -35,8 +35,10 @@ module.exports = (bot, db, admins) => {
             return "El usuario con ese id no existe";
           }
         });
-      ctx.reply(userInfo, { parse_mode: "Markdown" });
+
+      await bot.telegram.sendMessage(ctx.update.message.chat.id, userInfo, {
+        parse_mode: "Markdown",
+      });
     }
   });
 };
-
