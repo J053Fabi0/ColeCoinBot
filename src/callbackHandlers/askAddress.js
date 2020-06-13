@@ -3,8 +3,8 @@ module.exports = (bot, usersRef) => {
     let user_id = ctx.update.message.from.id.toString();
     let address = ctx.match[0];
 
-    const infoMsg = ctx.reply("Dame un momento");
-    console.log(infoMsg);
+    // const infoMsg = await ctx.reply("Dame un momento");
+    // const messageID = infoMsg.message_id;
 
     usersRef
       .get()
@@ -24,9 +24,8 @@ module.exports = (bot, usersRef) => {
           id: user_id,
         };
 
-        console.log(foundUser);
         if (foundUser) {
-          ctx.reply(
+          await ctx.reply(
             "<b>Hmm... Con esta cuenta de Telegram ya has pedido 5 COLEs.\n\n¿Estás intentando conseguir 5 COLEs para un amigo? <u>¡Pues es tu oportunidad de ganar una recompensa!</u></b> Usa el comando /recompensas para conocer más.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "HTML" }
           );
