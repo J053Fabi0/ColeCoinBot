@@ -95,12 +95,12 @@ function admin(ctx, usersRef) {
     });
 }
 
-async function user(ctx, usersRef) {
+function user(ctx, usersRef) {
   let user_id = ctx.update.message.from.id;
 
   usersRef
     .get()
-    .then((snapshot) => {
+    .then((async snapshot) => {
       var user = null;
       snapshot.forEach((doc) => {
         if (doc.id == user_id) {
