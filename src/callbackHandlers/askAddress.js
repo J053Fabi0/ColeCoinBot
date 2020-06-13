@@ -3,9 +3,11 @@ module.exports = (bot, usersRef) => {
     let user_id = ctx.update.message.from.id.toString();
     let address = ctx.match[0];
 
+    console.log("Entró al bot.hears");
     usersRef
       .get()
       .then(async (snapshot) => {
+        console.log("Entró al then");
         let foundUser = false;
         snapshot.forEach((doc) => {
           if (user_id == doc.id) {

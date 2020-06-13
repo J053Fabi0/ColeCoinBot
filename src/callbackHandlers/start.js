@@ -36,7 +36,7 @@ function start(ctx, shouldEdit) {
         inline_keyboard: [
           [
             {
-              text: "✅ Comenzar a usar COLEs",
+              text: "✅ Comenzar a usar COLE",
               callback_data: "comenzarTutorial",
             },
           ],
