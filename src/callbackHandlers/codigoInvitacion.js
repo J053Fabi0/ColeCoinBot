@@ -52,8 +52,8 @@ module.exports = (bot, usersRef) => {
             ctx.reply("Hubo un error: " + err);
           }
         } else if (user_id == match) {
+          console.log(msgInfo);
           bot.telegram.editMessageText(
-            console.log(msgInfo)
             msgInfo.chat.id,
             msgInfo.message_id,
             undefined,
