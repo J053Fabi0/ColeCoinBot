@@ -24,6 +24,7 @@ module.exports = (bot, db, admins) => {
               console.log(`Hubo un error: ${error}`);
             } else {
               // console.log(process.env.PWD);
+              console.log(process.env.PWD + "/getUsers.txt");
               bot.telegram.sendDocument(
                 ctx.update.message.chat.id,
                 process.env.PWD + "/getUsers.txt"
