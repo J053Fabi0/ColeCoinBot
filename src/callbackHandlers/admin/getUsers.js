@@ -27,8 +27,12 @@ module.exports = (bot, db, admins) => {
               console.log(process.env.PWD + "/getUsers.txt");
               bot.telegram.sendDocument(
                 ctx.update.message.chat.id,
-                process.env.PWD + "/getUsers.txt"
+                path.resolve(process.env.PWD + "/getUsers.txt")
               );
+              // bot.telegram.sendDocument(
+              //   ctx.update.message.chat.id,
+              //   process.env.PWD + "/getUsers.txt"
+              // );
 
               // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
               //   if (error) {
