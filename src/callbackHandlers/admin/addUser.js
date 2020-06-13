@@ -23,7 +23,7 @@ module.exports = (bot, usersRef, admins) => {
         address: address,
         invitations: 0,
         has_invited: false,
-        _id: user_id,
+        id: user_id.toString(),
       };
 
       usersRef
@@ -32,7 +32,7 @@ module.exports = (bot, usersRef, admins) => {
         .then(
           ctx.reply(
             "*Usuario añadido con éxito:*\n\n`" +
-              JSON.stringify(newUser, null, 1) +
+              JSON.stringify(new_user, null, 1) +
               "`",
             { parse_mode: "Markdown" }
           )
