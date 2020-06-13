@@ -1,4 +1,4 @@
-module.exports = (bot, db, admins) => {
+module.exports = (bot, usersRef, admins) => {
   bot.hears(/\baddUser\b/i, (ctx, next) => {
     if (!admins.includes(ctx.update.message.from.id)) {
       next();
