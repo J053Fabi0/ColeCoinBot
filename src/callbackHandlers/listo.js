@@ -14,7 +14,6 @@ module.exports = (bot, usersRef) => {
           ctx.update.callback_query.message.message_id,
           { disable_notification: true }
         );
-        console.log(JSON.stringify(ctx));
         await ctx.deleteMessage();
       } catch (err) {
         const { huboError } = require("../messages/messages");
@@ -76,6 +75,7 @@ module.exports = (bot, usersRef) => {
 
             if (recompensasActuales - recompensaADar <= 0) {
               usersRef.doc(user_id).update({ invitations: 0 });
+              console.log(ctx);
               await ctx.deleteMessage();
             } else {
               usersRef.doc(user_id).update({
