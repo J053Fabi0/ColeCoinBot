@@ -52,7 +52,7 @@ module.exports = (bot, usersRef) => {
             ctx.reply("Hubo un error: " + err);
           }
         } else if (user_id == match) {
-          bot.telegram.editMessageText(
+          await bot.telegram.editMessageText(
             msgInfo.chat.id,
             msgInfo.message_id,
             undefined,
