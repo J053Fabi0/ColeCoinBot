@@ -9,14 +9,21 @@ module.exports = (bot, db) => {
   });
 
   bot.hears(/\b[0-9]{9}\b/, async (ctx) => {
-    let user_id = Number(ctx.update.message.from.id);
-    let match = Number(ctx.match[0]);
+    let user_id = ctx.update.message.from.id;
+    let match = ctx.match[0];
 
     const msgInfo = await ctx.reply("`Dame un segundo...`", {
       parse_mode: "Markdown",
     });
 
-    db.findOne({ _id: user_id }, (err, doc) => {
+    usersRef.get().then(async (snapshot) => {
+      var doc = null;
+      snapshot.forEach((user_doc) => {
+        if (user_doc.id == user_id) {
+          doc = doc.data();
+          return;
+        }
+      });
       if (doc) {
         if (!doc.has_invited && user_id != match) {
           db.findOne({ _id: match }, (err, doc) => {

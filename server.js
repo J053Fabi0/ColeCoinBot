@@ -56,7 +56,7 @@ const askAdress = require("./src/callbackHandlers/askAddress");
 askAdress(bot, usersRef);
 
 const recompensas = require("./src/callbackHandlers/recompensas");
-// recompensas(bot, usersRef);
+recompensas(bot, usersRef);
 
 const start = require("./src/callbackHandlers/start"); // Este va hasta el final porque tiene un RegEX que abarca todo
 start(bot, usersRef);
