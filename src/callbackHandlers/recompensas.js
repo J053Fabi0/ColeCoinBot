@@ -110,6 +110,7 @@ async function user(ctx, usersRef) {
       });
 
       if (user) {
+        console.log(JSON.stringify(user));
         const { sinRecompensas } = require("../messages/messages");
         let message =
           sinRecompensas +
