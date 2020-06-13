@@ -17,12 +17,12 @@ module.exports = (bot, db, admins) => {
           data = data + "\n" + (doc.id, " => ", doc.data().address);
         });
       });
-      await fsLibrary.writeFile("getUsers.txt", data, (error) => {
+      fsLibrary.writeFile("getUsers.txt", data, (error) => {
         if (error) {
           console.log(`Hubo un error: ${error}`);
         }
       });
-      await fsLibrary.readFile("ind.txt", (error, txtString) => {
+      fsLibrary.readFile("getUsers.txt", (error, txtString) => {
         if (error) {
           console.log(`Hubo un error: ${error}`);
         }
