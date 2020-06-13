@@ -16,8 +16,8 @@ module.exports = (bot, db, admins) => {
         querySnapshot.forEach(function (doc) {
           data = data + "\n" + (doc.id, " => ", doc.data().address);
         });
+        console.log(data);
       });
-      console.log(data);
       fsLibrary.writeFile("/getUsers.txt", data, (error) => {
         if (error) {
           console.log(`Hubo un error: ${error}`);
