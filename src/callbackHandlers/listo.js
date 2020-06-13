@@ -77,8 +77,8 @@ module.exports = (bot, usersRef) => {
               usersRef.doc(user_id).update({ invitations: 0 });
               // console.log(ctx.update.callback_query.message);
               bot.telegram.deleteMessage(
-                ctx.update.callback_query.chat.id,
-                ctx.update.callback_query.message_id
+                ctx.update.callback_query.message.chat.id,
+                ctx.update.callback_query.message.message_id
               );
             } else {
               usersRef.doc(user_id).update({
