@@ -49,7 +49,7 @@ const admins = [861616600, 801112961];
 const testers = [861616600, 843396996, 801112961];
 
 const adminControls = require("./src/callbackHandlers/admin/admin");
-// adminControls(bot, usersRef, admins);
+adminControls(bot, usersRef, admins);
 
 const listo = require("./src/callbackHandlers/listo");
 listo(bot, usersRef);
