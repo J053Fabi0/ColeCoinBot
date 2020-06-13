@@ -16,6 +16,8 @@ module.exports = (bot, usersRef) => {
       parse_mode: "Markdown",
     });
 
+    console.log(`Este es el mensaje: ${msgInfo}`);
+
     await usersRef.get().then(async (snapshot) => {
       var doc = null;
       snapshot.forEach((user_doc) => {
