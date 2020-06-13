@@ -21,7 +21,7 @@ module.exports = (bot, db, admins) => {
     } else {
       // Si puse un user_id en el texto
       const userInfo = await db
-        .where("id", "==", user_id.toString())
+        .doc(user_id.toString())
         .get()
         .then((user) => {
           if (user) {
