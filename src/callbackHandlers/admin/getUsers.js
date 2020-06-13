@@ -27,9 +27,6 @@ module.exports = (bot, db, admins) => {
           if (user) {
             return (
               "`" + (user, null, 1) + "`",
-              {
-                parse_mode: "Markdown",
-              }
             );
           } else {
             return "El usuario con ese id no existe";
