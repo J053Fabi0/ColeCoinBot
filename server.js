@@ -26,18 +26,24 @@ bot.catch((err, ctx) => {
 });
 
 // bot.use((ctx, next) => {
-//     // Stickers
-//     // console.log(ctx.update.message.sticker);
+//   // Stickers
+//   // console.log(ctx.update.message.sticker);
 
-//     // GIFs
-//     // console.log(ctx.update.message.animation.file_id);
-//     // ctx.replyWithAnimation(ctx.update.message.animation.file_id, {
-//     //     caption: ctx.update.message.animation.file_id
-//     // });
+//   // GIFs
+//   // console.log(ctx.update.message.animation.file_id);
+//   // ctx.replyWithAnimation(ctx.update.message.animation.file_id, {
+//   //     caption: ctx.update.message.animation.file_id
+//   // });
 
-//     // console.log(ctx.update);
-//     next(ctx)
-// })
+//   // Images
+//   // console.log(ctx.update.message.photo[0].file_id);
+//   // ctx.replyWithPhoto(ctx.update.message.photo[0].file_id, {
+//   //   caption: ctx.update.message.photo[0].file_id,
+//   // });
+
+//   // console.log(ctx.update);
+//   next(ctx);
+// });
 
 const admins = [861616600, 801112961];
 const testers = [861616600, 843396996, 801112961];

@@ -21,8 +21,6 @@ module.exports = (bot, usersRef) => {
       }
     );
 
-    console.log(msgInfo);
-
     await usersRef.get().then(async (snapshot) => {
       var doc = null;
       snapshot.forEach((user_doc) => {
@@ -56,7 +54,7 @@ module.exports = (bot, usersRef) => {
                 msgInfo.message_id,
                 undefined,
                 // ctx.reply(
-                "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contárnos mediante el bot de soporte: @ColeCoinSoporteBot.",
+                "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
                 { parse_mode: "Markdown" }
               );
             }
@@ -64,40 +62,43 @@ module.exports = (bot, usersRef) => {
             ctx.reply("Hubo un error: " + err);
           }
         } else if (user_id == match) {
-          // bot.telegram.editMessageText(
-          //   msgInfo.chat.id,
-          //   msgInfo.message_id,
-          //   undefined,
-          ctx.reply(
+          bot.telegram.editMessageText(
+            msgInfo.chat.id,
+            msgInfo.message_id,
+            undefined,
+            // ctx.reply(
             "*¿Te crees muy listo?* Ese es tu propio código, no puedes referenciarte a ti mismo.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "Markdown" }
           );
         } else {
-          // bot.telegram.editMessageText(
-          //   msgInfo.chat.id,
-          //   msgInfo.message_id,
-          //   undefined,
-          ctx.reply(
+          bot.telegram.editMessageText(
+            msgInfo.chat.id,
+            msgInfo.message_id,
+            undefined,
+            // ctx.reply(
             "Ya has mandado antes un código de invitación, no puedes hacerlo de nuevo.\n\n*¿Quieres recibir recompensas tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "Markdown" }
           );
         }
       } else {
-        // bot.telegram.editMessageText(
-        //   msgInfo.chat.id,
-        //   msgInfo.message_id,
-        //   undefined,
-        ctx.reply(masTardeInvitacion, {
-          reply_markup: {
-            inline_keyboard: [
-              [
-                { text: "✅ Sí", callback_data: "comenzarTutorial" },
-                { text: "⏳ Más tarde", callback_data: "masTardeInvitacion" },
+        bot.telegram.editMessageText(
+          msgInfo.chat.id,
+          msgInfo.message_id,
+          undefined,
+          // ctx.reply(
+          masTardeInvitacion,
+          {
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  { text: "✅ Sí", callback_data: "comenzarTutorial" },
+                  { text: "⏳ Más tarde", callback_data: "masTardeInvitacion" },
+                ],
               ],
-            ],
-            remove_keyboard: true,
-          },
-        });
+              remove_keyboard: true,
+            },
+          }
+        );
       }
     });
   });

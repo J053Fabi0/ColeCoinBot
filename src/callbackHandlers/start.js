@@ -3,8 +3,9 @@ module.exports = (bot, db) => {
     start(ctx, false);
   });
   bot.action("start", (ctx) => {
+    ctx.deleteMessage();
     ctx.answerCbQuery();
-    start(ctx, true);
+    start(ctx, false);
   });
   bot.action("volver_ayuda", (ctx) => {
     ctx.deleteMessage();

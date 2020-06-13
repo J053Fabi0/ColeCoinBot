@@ -15,7 +15,8 @@ let tutorial = [
 
 *¿No estás seguro de querer descargarla?*
 - La app creará una cartera virtual que no estará asociada a ti de ninguna forma, por lo que será totalmente anónima. No te pedirá datos personales.
-- Pesa solo 43MB aprox. En perspectiva, Facebook pesa 57MB, un juego en promedio pesa 100MB.
+- Pesa solo 56MB aproximadamente. En perspectiva, Facebook pesa 57MB, un juego en promedio pesa 100MB.
+- ¿Tienes alguna otra duda? También puedes contactarnos a @ColeCoinSoporteBot.
 `,
   `
 - En la sección de cartera, añade la moneda COLE.
