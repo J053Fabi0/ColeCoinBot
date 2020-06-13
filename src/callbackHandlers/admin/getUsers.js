@@ -9,14 +9,20 @@ module.exports = (bot, db, admins) => {
 
     if (isNaN(user_id)) {
       // Si no puse un user_id
-      db.find({}, (err, doc) => {
-        let users = "";
-        doc.forEach((user) => {
-          users = users + JSON.stringify(user, null, 1) + "\n";
+      db.get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          console.log(doc.id, " => ", doc.data());
         });
-        ctx.reply("`" + users + "`*" + doc.length + " total users.*", {
-          parse_mode: "Markdown",
-        });
+      });
+      // db;
+      // db.find({}, (err, doc) => {
+      //   let users = "";
+      //   doc.forEach((user) => {
+      //     users = users + JSON.stringify(user, null, 1) + "\n";
+      //   });
+      //   ctx.reply("`" + users + "`*" + doc.length + " total users.*", {
+      //     parse_mode: "Markdown",
+      //   });
       });
     } else {
       // Si puse un user_id en el texto
