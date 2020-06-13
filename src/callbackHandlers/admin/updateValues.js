@@ -13,7 +13,8 @@ module.exports = (bot, db, admins) => {
       isNaN(user_id) ||
       isNaN(new_value)
     ) {
-      ctx.reply(
+      bot.telegram.sendMessage(
+        ctx.update.message.chat.id,
         "El uso del comando es `update invitations <user_id> <new_integer_value>`.",
         { parse_mode: "Markdown" }
       );
@@ -34,7 +35,10 @@ module.exports = (bot, db, admins) => {
         );
       })
       .catch(function (error) {
-        ctx.reply("Ese ID no existe en la base de datos.");
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Ese ID no existe en la base de datos."
+        );
       });
   });
 
@@ -50,23 +54,33 @@ module.exports = (bot, db, admins) => {
     );
 
     if (ctx.match.input.split(" ").length != 4 || isNaN(user_id)) {
-      ctx.reply(
+      bot.telegram.sendMessage(
+        ctx.update.message.chat.id,
         "El uso del comando es `update has_invited <user_id> <true/false>`.",
         { parse_mode: "Markdown" }
       );
       return;
     }
 
-    db.update(
-      { _id: user_id },
-      { $set: { has_invited: new_value } },
-      { returnUpdatedDocs: true },
-      (err, numberAffected, user) => {
-        ctx.reply("`" + JSON.stringify(user, null, 1) + "`", {
-          parse_mode: "Markdown",
-        });
-      }
-    );
+    db.doc(user_id.toString())
+      .update({
+        has_invited: new_value,
+      })
+      .then(function () {
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Listo. Usa el comando `user " +
+            user_id +
+            "` si quieres ver los cambios.",
+          { parse_mode: "Markdown" }
+        );
+      })
+      .catch(function (error) {
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Ese ID no existe en la base de datos."
+        );
+      });
   });
 
   bot.hears(/update address/i, (ctx, next) => {
@@ -83,23 +97,33 @@ module.exports = (bot, db, admins) => {
       isNaN(user_id) ||
       new_value.length != 103
     ) {
-      ctx.reply(
+      bot.telegram.sendMessage(
+        ctx.update.message.chat.id,
         "El uso del comando es `update address <user_id> <103_chars_long_string>`.",
         { parse_mode: "Markdown" }
       );
       return;
     }
 
-    db.update(
-      { _id: user_id },
-      { $set: { address: new_value } },
-      { returnUpdatedDocs: true },
-      (err, numberAffected, user) => {
-        ctx.reply("`" + JSON.stringify(user, null, 1) + "`", {
-          parse_mode: "Markdown",
-        });
-      }
-    );
+    db.doc(user_id.toString())
+      .update({
+        address: new_value,
+      })
+      .then(function () {
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Listo. Usa el comando `user " +
+            user_id +
+            "` si quieres ver los cambios.",
+          { parse_mode: "Markdown" }
+        );
+      })
+      .catch(function (error) {
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Ese ID no existe en la base de datos."
+        );
+      });
   });
 
   bot.hears(/update/i, (ctx, next) => {
@@ -108,7 +132,8 @@ module.exports = (bot, db, admins) => {
       return;
     }
 
-    ctx.reply(
+    bot.telegram.sendMessage(
+      ctx.update.message.chat.id,
       "El uso del comando es `update <address/has_invited/invitations> <user_id> <new_value>`.",
       { parse_mode: "Markdown" }
     );
