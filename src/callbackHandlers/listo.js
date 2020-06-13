@@ -75,7 +75,7 @@ module.exports = (bot, usersRef) => {
 
             if (recompensasActuales - recompensaADar <= 0) {
               usersRef.doc(user_id).update({ invitations: 0 });
-              console.log(ctx);
+              console.log(ctx.update.callback_query.message);
               await ctx.deleteMessage();
             } else {
               usersRef.doc(user_id).update({
