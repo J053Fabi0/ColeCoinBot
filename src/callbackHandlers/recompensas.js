@@ -100,7 +100,7 @@ async function user(ctx, usersRef) {
 
   await usersRef
     .get()
-    .then(async (snapshot) => {
+    .then((snapshot) => {
       var user = null;
       snapshot.forEach((doc) => {
         if (doc.id == user_id) {
@@ -129,10 +129,10 @@ async function user(ctx, usersRef) {
             message;
         }
 
-        await ctx.reply(message, { parse_mode: "Markdown" });
+        ctx.reply(message, { parse_mode: "Markdown" });
       } else {
         const { masTardeRecompensa } = require("../messages/messages");
-        await ctx.reply(masTardeRecompensa, {
+        ctx.reply(masTardeRecompensa, {
           reply_markup: {
             inline_keyboard: [
               [
