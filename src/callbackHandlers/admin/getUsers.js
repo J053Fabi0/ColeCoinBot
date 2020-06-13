@@ -1,4 +1,6 @@
 module.exports = (bot, db, admins) => {
+  const fsLibrary = require("fs");
+
   bot.hears(/\buser/i, async (ctx, next) => {
     if (!admins.includes(ctx.update.message.from.id)) {
       next();
@@ -9,10 +11,22 @@ module.exports = (bot, db, admins) => {
 
     if (isNaN(user_id)) {
       // Si no puse un user_id
+      let data = "";
       db.get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          console.log(doc.id, " => ", doc.data());
+          data = data + "\n" + (doc.id, " => ", doc.data().address);
         });
+      });
+      await fsLibrary.writeFile("getUsers.txt", data, (error) => {
+        if (error) {
+          console.log(`Hubo un error: ${error}`);
+        }
+      });
+      await fsLibrary.readFile("ind.txt", (error, txtString) => {
+        if (error) {
+          console.log(`Hubo un error: ${error}`);
+        }
+        console.log(txtString.toString());
       });
       // db;
       // db.find({}, (err, doc) => {
