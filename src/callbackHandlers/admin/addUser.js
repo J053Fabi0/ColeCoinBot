@@ -27,7 +27,7 @@ module.exports = (bot, usersRef, admins) => {
       };
 
       usersRef
-        .doc(user_id)
+        .doc(user_id.toString())
         .set(new_user)
         .then(
           ctx.reply(
