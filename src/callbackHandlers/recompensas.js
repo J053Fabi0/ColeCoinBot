@@ -95,10 +95,10 @@ function admin(ctx, usersRef) {
     });
 }
 
-function user(ctx, usersRef) {
+async function user(ctx, usersRef) {
   let user_id = ctx.update.message.from.id;
 
-  usersRef
+  await usersRef
     .get()
     .then(async (snapshot) => {
       var user = null;
