@@ -20,13 +20,15 @@ module.exports = (bot, db, admins) => {
       fsLibrary.writeFile("getUsers.txt", data, (error) => {
         if (error) {
           console.log(`Hubo un error: ${error}`);
+        } else {
+          fsLibrary.readFile("getUsers.txt", (error, txtString) => {
+            if (error) {
+              console.log(`Hubo un error: ${error}`);
+            } else {
+              console.log(txtString.toString());
+            }
+          });
         }
-      });
-      fsLibrary.readFile("getUsers.txt", (error, txtString) => {
-        if (error) {
-          console.log(`Hubo un error: ${error}`);
-        }
-        console.log(txtString.toString());
       });
       // db;
       // db.find({}, (err, doc) => {
