@@ -14,7 +14,10 @@ module.exports = (bot, usersRef) => {
           ctx.update.callback_query.message.message_id,
           { disable_notification: true }
         );
-        await ctx.deleteMessage();
+        bot.telegram.deleteMessage(
+          ctx.update.callback_query.message.chat.id,
+          ctx.update.callback_query.message.message_id
+        );
       } catch (err) {
         const { huboError } = require("../messages/messages");
         ctx.reply(huboError + err);
@@ -75,7 +78,6 @@ module.exports = (bot, usersRef) => {
 
             if (recompensasActuales - recompensaADar <= 0) {
               usersRef.doc(user_id).update({ invitations: 0 });
-              // console.log(ctx.update.callback_query.message);
               bot.telegram.deleteMessage(
                 ctx.update.callback_query.message.chat.id,
                 ctx.update.callback_query.message.message_id
