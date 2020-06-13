@@ -16,7 +16,7 @@ module.exports = (bot, usersRef) => {
       parse_mode: "Markdown",
     });
 
-    console.log(`Este es el mensaje: ${msgInfo}`);
+    console.log(`Este es el mensaje: ${JSON.stringify(msgInfo)}`);
 
     await usersRef.get().then(async (snapshot) => {
       var doc = null;
