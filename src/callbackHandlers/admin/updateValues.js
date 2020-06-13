@@ -25,7 +25,13 @@ module.exports = (bot, db, admins) => {
         invitations: new_value,
       })
       .then(function () {
-        bot.telegram.sendMessage(ctx.update.message.chat.id, "Listo");
+        bot.telegram.sendMessage(
+          ctx.update.message.chat.id,
+          "Listo. Usa el comando `user " +
+            user_id +
+            "` si quieres ver los cambios.",
+          { parse_mode: "Markdown" }
+        );
       })
       .catch(function (error) {
         // The document probably doesn't exist.
