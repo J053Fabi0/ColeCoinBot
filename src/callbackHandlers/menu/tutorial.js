@@ -11,14 +11,14 @@ module.exports = (bot, db) => {
         inline_keyboard: [
           [
             {
-              text: "PlayStore",
-              url:
-                "https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.incognito.wallet&ddl=1&pcampaignid=web_ddl_1",
-            },
-            {
               text: "AppStore",
               url:
                 "https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606",
+            },
+            {
+              text: "PlayStore",
+              url:
+                "https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.incognito.wallet&ddl=1&pcampaignid=web_ddl_1",
             },
           ],
           [
