@@ -19,7 +19,7 @@ let tutorial = [
 - ¿Tienes alguna otra duda? También puedes contactarnos a @ColeCoinSoporteBot.
 `,
   `
-- En la sección de cartera, añade la moneda COLE.
+- En la sección _Assets_, añade la moneda pCOLE, la que tiene la palomita verde (lo que quiere decir que es la original).
 - Haz click en ella y en Recibir.
 - Envía un mensaje con la dirección que encontrarás.
 `,
