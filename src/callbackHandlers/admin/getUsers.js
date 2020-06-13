@@ -20,10 +20,12 @@ module.exports = (bot, db, admins) => {
           if (error) {
             console.log(`Hubo un error: ${error}`);
           } else {
-            bot.telegram.sendDocument(
-              ctx.update.message.chat.id,
-              "getUsers.txt"
-            );
+            console.log(process.env);
+            // bot.telegram.sendDocument(
+            //   ctx.update.message.chat.id,
+            //   "getUsers.txt"
+            // );
+
             // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
             //   if (error) {
             //     console.log(`Hubo un error: ${error}`);
