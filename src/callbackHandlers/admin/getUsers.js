@@ -14,8 +14,8 @@ module.exports = (bot, db, admins) => {
       let data = "```\n";
       let count = 0;
       db.get().then(function (querySnapshot) {
-        count = querySnapshot.length;
         querySnapshot.forEach(function (doc) {
+          count++;
           data =
             data +
             (doc.id + ":\n" + JSON.stringify(doc.data(), null, 1)) +
