@@ -23,7 +23,7 @@ module.exports = (bot, db, admins) => {
       //   ctx.reply("`" + users + "`*" + doc.length + " total users.*", {
       //     parse_mode: "Markdown",
       //   });
-      });
+      // });
     } else {
       // Si puse un user_id en el texto
       const userInfo = await db
