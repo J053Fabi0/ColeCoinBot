@@ -23,7 +23,7 @@ module.exports = (bot, usersRef) => {
 
         if (foundUser) {
           bot.telegram.sendMessage(
-            ctx.update.callback_query.message.chat.id,
+            ctx.update.message.chat.id,
             "<b>Hmm... Con esta cuenta de Telegram ya has pedido 5 COLEs.\n\n¿Estás intentando conseguir 5 COLEs para un amigo? <u>¡Pues es tu oportunidad de ganar una recompensa!</u></b> Usa el comando /recompensas para conocer más.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "HTML" }
           );
