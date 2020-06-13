@@ -14,6 +14,7 @@ module.exports = (bot, usersRef) => {
           ctx.update.callback_query.message.message_id,
           { disable_notification: true }
         );
+        console.log(JSON.stringify(ctx));
         await ctx.deleteMessage();
       } catch (err) {
         const { huboError } = require("../messages/messages");
