@@ -16,25 +16,29 @@ module.exports = (bot, db, admins) => {
         querySnapshot.forEach(function (doc) {
           data = data + (doc.id + " => " + doc.data().address) + "\n";
         });
-        fsLibrary.writeFile("getUsers.txt", data, (error) => {
-          if (error) {
-            console.log(`Hubo un error: ${error}`);
-          } else {
-            // console.log(process.env.PWD);
-            bot.telegram.sendDocument(
-              ctx.update.message.chat.id,
-              process.env.PWD + "/getUsers.txt"
-            );
+        fsLibrary.writeFile(
+          process.env.PWD + "/getUsers.txt",
+          data,
+          (error) => {
+            if (error) {
+              console.log(`Hubo un error: ${error}`);
+            } else {
+              // console.log(process.env.PWD);
+              bot.telegram.sendDocument(
+                ctx.update.message.chat.id,
+                process.env.PWD + "/getUsers.txt"
+              );
 
-            // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
-            //   if (error) {
-            //     console.log(`Hubo un error: ${error}`);
-            //   } else {
-            //     // console.log(txtString.toString());
-            //   }
-            // });
+              // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
+              //   if (error) {
+              //     console.log(`Hubo un error: ${error}`);
+              //   } else {
+              //     // console.log(txtString.toString());
+              //   }
+              // });
+            }
           }
-        });
+        );
       });
       // db;
       // db.find({}, (err, doc) => {
