@@ -3,9 +3,6 @@ module.exports = (bot, usersRef) => {
     let user_id = ctx.update.message.from.id.toString();
     let address = ctx.match[0];
 
-    // const infoMsg = await ctx.reply("Dame un momento");
-    // const messageID = infoMsg.message_id;
-
     usersRef
       .get()
       .then(async (snapshot) => {

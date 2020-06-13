@@ -1,4 +1,4 @@
-module.exports = (bot, db) => {
+module.exports = (bot, usersRef) => {
   const { masTardeInvitacion } = require("../messages/messages");
 
   bot.action("masTardeInvitacion", async (ctx) => {
@@ -26,44 +26,31 @@ module.exports = (bot, db) => {
       });
       if (doc) {
         if (!doc.has_invited && user_id != match) {
-          db.findOne({ _id: match }, (err, doc) => {
-            if (doc) {
-              db.update(
-                { _id: match },
-                { $inc: { invitations: 1 } },
-                {},
-                function () {
-                  db.update(
-                    { _id: user_id },
-                    { $set: { has_invited: true } },
-                    {},
-                    function () {
-                      bot.telegram.editMessageText(
-                        msgInfo.chat.id,
-                        msgInfo.message_id,
-                        undefined,
-                        "*Muy bien*. Ahora tu amigo recibirá un COLE por haberte invitado.\n\n*¿Quieres recibir tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
-                        { parse_mode: "Markdown" }
-                      );
-                      bot.telegram.sendMessage(
-                        match,
-                        "*¡Un amigo te ha referenciado al crear una cuenta!* Bien hecho. Pronto mandaremos tu COLE de recompensa.\nPara ver tus recompensas usa el comando /recompensas.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
-                        { parse_mode: "Markdown" }
-                      );
-                    }
-                  );
-                }
-              );
-            } else {
+          try {
+            let ret = await aumentarInvitacionStatus(match, ctx, usersRef);
+            if (ret) {
+              usersRef.doc(user_id + "").update({ has_been_invited: true });
               bot.telegram.editMessageText(
                 msgInfo.chat.id,
                 msgInfo.message_id,
                 undefined,
+                "*Muy bien*. Ahora tu amigo recibirá un COLE por haberte invitado.\n\n*¿Quieres recibir tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
+                { parse_mode: "Markdown" }
+              );
+              bot.telegram.sendMessage(
+                match,
+                "*¡Un amigo te ha referenciado al crear una cuenta!* Bien hecho. Pronto mandaremos tu COLE de recompensa.\nPara ver tus recompensas usa el comando /recompensas.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
+                { parse_mode: "Markdown" }
+              );
+            } else {
+              ctx.reply(
                 "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contárnosla mediante el bot de soporte: @ColeCoinSoporteBot.",
                 { parse_mode: "Markdown" }
               );
             }
-          });
+          } catch (err) {
+            ctx.reply("Hubo un error: " + err);
+          }
         } else if (user_id == match) {
           bot.telegram.editMessageText(
             msgInfo.chat.id,
@@ -103,3 +90,33 @@ module.exports = (bot, db) => {
     });
   });
 };
+
+async function aumentarInvitacionStatus(user_id, ctx, usersRef) {
+  return usersRef
+    .get()
+    .then((snapshot) => {
+      var user_doc = undefined;
+      var exists = false;
+      snapshot.forEach((doc) => {
+        if (doc.id == user_id) {
+          user_doc = doc.data();
+          exists = true;
+          return;
+        }
+      });
+
+      if (exists) {
+        usersRef
+          .doc(user_id + "")
+          .update({ invitations: user_doc.invitations + 1 });
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch((err) => {
+      const { huboError } = require("../messages/messages");
+      ctx.reply(huboError + err);
+      console.log(err);
+    });
+}

@@ -50,7 +50,7 @@ const listo = require("./src/callbackHandlers/listo");
 listo(bot, usersRef);
 
 const codigoInvitacion = require("./src/callbackHandlers/codigoInvitacion");
-// codigoInvitacion(bot, usersRef);
+codigoInvitacion(bot, usersRef);
 
 const askAdress = require("./src/callbackHandlers/askAddress");
 askAdress(bot, usersRef);
