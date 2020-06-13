@@ -25,11 +25,14 @@ module.exports = (bot, db, admins) => {
         .get()
         .then((user) => {
           if (user) {
-            return resolve("`" + JSON.stringify(user, null, 1) + "`", {
-              parse_mode: "Markdown",
-            });
+            return (
+              "`" + JSON.stringify(user, null, 1) + "`",
+              {
+                parse_mode: "Markdown",
+              }
+            );
           } else {
-            return resolve("El usuario con ese id no existe");
+            return "El usuario con ese id no existe";
           }
         });
       ctx.reply(userInfo, { parse_mode: "Markdown" });
