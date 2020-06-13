@@ -45,7 +45,7 @@ module.exports = (bot, usersRef) => {
               );
             } else {
               ctx.reply(
-                "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contárnosla mediante el bot de soporte: @ColeCoinSoporteBot.",
+                "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contárnos mediante el bot de soporte: @ColeCoinSoporteBot.",
                 { parse_mode: "Markdown" }
               );
             }
