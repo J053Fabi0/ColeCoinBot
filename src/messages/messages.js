@@ -19,7 +19,7 @@ let tutorial = [
 - ¿Tienes alguna otra duda? También puedes contactarnos a @ColeCoinSoporteBot.
 `,
   `
-- En la sección *Assets*, añade la moneda *COLE*, la que tiene la palomita verde (la original es esa).
+- En la sección *Assets*, añade la moneda *Cole Coin*, la que tiene la palomita verde (la original es esa).
 - Haz click en ella y en Recibir.
 - Envía un mensaje con la dirección que encontrarás.
 `,
