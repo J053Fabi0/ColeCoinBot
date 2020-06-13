@@ -97,7 +97,6 @@ function admin(ctx, usersRef) {
 
 function user(ctx, usersRef) {
   let user_id = ctx.update.message.from.id;
-  console.log("Hola");
 
   usersRef
     .get()
@@ -130,10 +129,10 @@ function user(ctx, usersRef) {
             message;
         }
 
-        ctx.reply(message, { parse_mode: "Markdown" });
+        await ctx.reply(message, { parse_mode: "Markdown" });
       } else {
         const { masTardeRecompensa } = require("../messages/messages");
-        ctx.reply(masTardeRecompensa, {
+        await ctx.reply(masTardeRecompensa, {
           reply_markup: {
             inline_keyboard: [
               [
@@ -148,7 +147,7 @@ function user(ctx, usersRef) {
     })
     .catch((err) => {
       const { huboError } = require("../messages/messages");
-      ctx.reply(huboError + err);
+      await ctx.reply(huboError + err);
       console.log(err);
     });
 }
