@@ -33,7 +33,8 @@ module.exports = (bot, db) => {
   });
 
   bot.action("segundoPaso", (ctx) => {
-    ctx.editMessageText(tutorial[1], {
+    ctx.deleteMessage();
+    ctx.reply(tutorial[1], {
       reply_markup: {
         inline_keyboard: [
           [
