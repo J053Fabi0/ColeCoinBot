@@ -11,37 +11,30 @@ module.exports = (bot, db, admins) => {
 
     if (isNaN(user_id)) {
       // Si no puse un user_id
-      let data = "";
+      let data = "```\n";
+      let count = 0;
       db.get().then(function (querySnapshot) {
+        count = querySnapshot.length;
         querySnapshot.forEach(function (doc) {
           data =
             data +
             (doc.id + ":\n" + JSON.stringify(doc.data(), null, 1)) +
             "\n\n";
         });
-        fsLibrary.writeFile(
-          process.env.PWD + "/getUsers.txt",
-          data,
-          (error) => {
-            if (error) {
-              console.log(`Hubo un error: ${error}`);
-            } else {
-              // console.log(process.env.PWD);
-              console.log(process.env.PWD + "/getUsers.txt");
-              bot.telegram.sendDocument(ctx.update.message.chat.id, {
-                source: process.env.PWD + "/getUsers.txt",
-              });
-
-              // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
-              //   if (error) {
-              //     console.log(`Hubo un error: ${error}`);
-              //   } else {
-              //     // console.log(txtString.toString());
-              //   }
-              // });
-            }
+        data = data + "```";
+        fsLibrary.writeFile(process.env.PWD + "/getUsers.md", data, (error) => {
+          if (error) {
+            console.log(`Hubo un error: ${error}`);
+          } else {
+            bot.telegram.sendDocument(
+              ctx.update.message.chat.id,
+              {
+                source: process.env.PWD + "/getUsers.md",
+              },
+              { caption: `Total users: ${count}` }
+            );
           }
-        );
+        });
       });
       // db;
       // db.find({}, (err, doc) => {
