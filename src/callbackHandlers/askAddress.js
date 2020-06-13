@@ -30,7 +30,7 @@ module.exports = (bot, usersRef) => {
           return;
         } else {
           usersRef.doc(user_id).set(new_user);
-          bot.telegram.sendMessage(
+          await bot.telegram.sendMessage(
             ctx.update.message.chat.id,
             "*¡Listo!* Recibirás 5 COLE en cuanto tengamos tiempo de mandarlos.\nTe avisaremos con un mensaje aquí cuando lo hayamos hecho.",
             { parse_mode: "Markdown" }
