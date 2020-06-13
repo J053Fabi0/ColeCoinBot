@@ -16,7 +16,7 @@ module.exports = (bot, usersRef) => {
       parse_mode: "Markdown",
     });
 
-    usersRef.get().then(async (snapshot) => {
+    await usersRef.get().then(async (snapshot) => {
       var doc = null;
       snapshot.forEach((user_doc) => {
         if (user_doc.id == user_id) {
@@ -52,7 +52,6 @@ module.exports = (bot, usersRef) => {
             ctx.reply("Hubo un error: " + err);
           }
         } else if (user_id == match) {
-          console.log(msgInfo);
           bot.telegram.editMessageText(
             msgInfo.chat.id,
             msgInfo.message_id,
