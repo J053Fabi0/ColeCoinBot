@@ -13,7 +13,6 @@ let tutorial = [
 ¡Perfecto!
 *Primero descarga Incognito Wallet*. Te dejo los links aquí abajo.
 
-*¿No estás seguro de querer descargarla?*
 - La app creará una cartera virtual que no estará asociada a ti de ninguna forma, por lo que será totalmente anónima. No te pedirá datos personales.
 - Pesa solo 56MB aproximadamente. En perspectiva, Facebook pesa 57MB, un juego en promedio pesa 100MB.
 - ¿Tienes alguna otra duda? También puedes contactarnos a @ColeCoinSoporteBot.
