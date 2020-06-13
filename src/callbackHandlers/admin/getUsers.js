@@ -14,19 +14,23 @@ module.exports = (bot, db, admins) => {
       let data = "";
       db.get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          data = data + "\n" + (doc.id + " => " + doc.data().address);
+          data = data + (doc.id + " => " + doc.data().address) + "\n";
         });
         fsLibrary.writeFile("getUsers.txt", data, (error) => {
           if (error) {
             console.log(`Hubo un error: ${error}`);
           } else {
-            fsLibrary.readFile("getUsers.txt", (error, txtString) => {
-              if (error) {
-                console.log(`Hubo un error: ${error}`);
-              } else {
-                // console.log(txtString.toString());
-              }
-            });
+            bot.telegram.sendDocument(
+              ctx.update.message.chat.id,
+              "getUsers.txt"
+            );
+            // fsLibrary.readFile("getUsers.txt", (error, txtString) => {
+            //   if (error) {
+            //     console.log(`Hubo un error: ${error}`);
+            //   } else {
+            //     // console.log(txtString.toString());
+            //   }
+            // });
           }
         });
       });
