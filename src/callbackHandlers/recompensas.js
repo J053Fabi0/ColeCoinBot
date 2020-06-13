@@ -10,7 +10,7 @@ module.exports = (bot, db) => {
     }
   });
 
-  bot.hears(/recompensa/i, (ctx) => {
+  bot.hears(/recompensa/i, async (ctx) => {
     let chat_id = ctx.update.message.chat.id;
 
     if (chat_id == "-1001482751413") {
