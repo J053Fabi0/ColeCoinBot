@@ -97,6 +97,7 @@ function admin(ctx, usersRef) {
 
 function user(ctx, usersRef) {
   let user_id = ctx.update.message.from.id;
+  console.log("Hola");
 
   usersRef
     .get()
