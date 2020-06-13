@@ -23,9 +23,9 @@ module.exports = (bot, db, admins) => {
       const userInfo = await db
         .doc(user_id.toString())
         .get()
-        .then((user) => {
-          if (user) {
-            return "`" + user + "`";
+        .then(function (user) {
+          if (user.exists) {
+            return "`" + user.data() + "`";
           } else {
             return "El usuario con ese id no existe";
           }
