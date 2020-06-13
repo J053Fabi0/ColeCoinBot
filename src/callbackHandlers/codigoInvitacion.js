@@ -53,6 +53,7 @@ module.exports = (bot, usersRef) => {
           }
         } else if (user_id == match) {
           bot.telegram.editMessageText(
+            console.log(msgInfo)
             msgInfo.chat.id,
             msgInfo.message_id,
             undefined,
