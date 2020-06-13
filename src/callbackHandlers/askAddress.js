@@ -30,11 +30,13 @@ module.exports = (bot, usersRef) => {
           return;
         } else {
           usersRef.doc(user_id).set(new_user);
-          await ctx.reply(
+          bot.telegram.sendMessage(
+            ctx.update.message.chat.id,
             "*¡Listo!* Recibirás 5 COLE en cuanto tengamos tiempo de mandarlos.\nTe avisaremos con un mensaje aquí cuando lo hayamos hecho.",
             { parse_mode: "Markdown" }
           );
-          ctx.reply(
+          bot.telegram.sendMessage(
+            ctx.update.message.chat.id,
             "*Si tienes un código de invitación, es el momento de enviarlo.*\n¿Qué es un código de invitación?\nPuedes usar el comando /recompensas para obtener más información y el tuyo propio.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "Markdown" }
           );
@@ -60,7 +62,7 @@ module.exports = (bot, usersRef) => {
       })
       .catch((err) => {
         const { huboError } = require("../messages/messages");
-        ctx.reply(huboError + err);
+        bot.telegram.sendMessage(ctx.update.message.chat.id, huboError + err);
         console.log(err);
       });
   });
