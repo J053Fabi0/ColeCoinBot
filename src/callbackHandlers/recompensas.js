@@ -14,7 +14,7 @@ module.exports = (bot, db) => {
     let chat_id = ctx.update.message.chat.id;
 
     if (chat_id == "-1001482751413") {
-      admin(ctx, db);
+      await admin(ctx, db);
     } else {
       await user(ctx, db);
     }
@@ -29,9 +29,9 @@ module.exports = (bot, db) => {
   });
 };
 
-function admin(ctx, usersRef) {
+async function admin(ctx, usersRef) {
   ctx.deleteMessage();
-  usersRef
+  await usersRef
     .where("invitations", ">=", 1)
     .get()
     .then((snapshot) => {
