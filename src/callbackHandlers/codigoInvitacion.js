@@ -37,11 +37,11 @@ module.exports = (bot, usersRef) => {
             let ret = await aumentarInvitacionStatus(match, ctx, usersRef);
             if (ret) {
               usersRef.doc(user_id + "").update({ has_invited: true });
-              // bot.telegram.editMessageText(
-              //   msgInfo.chat.id,
-              //   msgInfo.message_id,
-              //   undefined,
-              ctx.reply(
+              bot.telegram.editMessageText(
+                msgInfo.chat.id,
+                msgInfo.message_id,
+                undefined,
+                // ctx.reply(
                 "*Muy bien*. Ahora tu amigo recibirá un COLE por haberte invitado.\n\n*¿Quieres recibir tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
                 { parse_mode: "Markdown" }
               );
@@ -51,7 +51,11 @@ module.exports = (bot, usersRef) => {
                 { parse_mode: "Markdown" }
               );
             } else {
-              ctx.reply(
+              bot.telegram.editMessageText(
+                msgInfo.chat.id,
+                msgInfo.message_id,
+                undefined,
+                // ctx.reply(
                 "*Lo lamento, pero... no tenemos a ese usuario en nuestra base de datos.* ¿Estás seguro de tener el código correcto?\n\nCualquier duda puedes contárnos mediante el bot de soporte: @ColeCoinSoporteBot.",
                 { parse_mode: "Markdown" }
               );
