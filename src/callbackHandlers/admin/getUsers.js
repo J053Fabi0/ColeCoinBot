@@ -24,7 +24,7 @@ module.exports = (bot, db, admins) => {
               if (error) {
                 console.log(`Hubo un error: ${error}`);
               } else {
-                console.log(txtString.toString());
+                // console.log(txtString.toString());
               }
             });
           }
