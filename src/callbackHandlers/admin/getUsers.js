@@ -26,7 +26,7 @@ module.exports = (bot, db, admins) => {
         .then((user) => {
           if (user) {
             return (
-              "`" + JSON.stringify(user, null, 1) + "`",
+              "`" + (user, null, 1) + "`",
               {
                 parse_mode: "Markdown",
               }
