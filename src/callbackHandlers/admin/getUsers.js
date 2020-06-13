@@ -14,7 +14,10 @@ module.exports = (bot, db, admins) => {
       let data = "";
       db.get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          data = data + (doc.id + " => " + doc.data().address) + "\n";
+          data =
+            data +
+            (doc.id + ":\n" + JSON.stringify(doc.data(), null, 1)) +
+            "\n\n";
         });
         fsLibrary.writeFile(
           process.env.PWD + "/getUsers.txt",
