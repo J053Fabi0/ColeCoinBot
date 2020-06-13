@@ -46,7 +46,7 @@ No olvides darle un vistazo a las _/recompensas_.
 
 ¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.`;
 let masTardeInvitacion =
-  "Para ingresar un código de invitación primero tienes que hacer completar el tutorial que te dará tus primeras 5 monedas. ¿Quieres hacerlo de una vez?";
+  "Para ingresar un código de invitación primero tienes que completar el tutorial que te dará tus primeras 5 monedas. ¿Quieres hacerlo de una vez?";
 let masTardeRecompensa =
   "Para ganar recompensas por invitar amigos primero tienes que completar el tutorial y ganar tus primeras 5 monedas. ¿Quieres hacerlo?";
 

@@ -20,7 +20,7 @@ module.exports = (bot, usersRef) => {
       var doc = null;
       snapshot.forEach((user_doc) => {
         if (user_doc.id == user_id) {
-          doc = doc.data();
+          doc = user_doc.data();
           return;
         }
       });
@@ -29,7 +29,7 @@ module.exports = (bot, usersRef) => {
           try {
             let ret = await aumentarInvitacionStatus(match, ctx, usersRef);
             if (ret) {
-              usersRef.doc(user_id + "").update({ has_been_invited: true });
+              usersRef.doc(user_id + "").update({ has_invited: true });
               bot.telegram.editMessageText(
                 msgInfo.chat.id,
                 msgInfo.message_id,
@@ -64,7 +64,7 @@ module.exports = (bot, usersRef) => {
             msgInfo.chat.id,
             msgInfo.message_id,
             undefined,
-            "Ya has mandado antes un código de invitación.\n\n*¿Quieres recibir recompensas tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
+            "Ya has mandado antes un código de invitación, no puedes hacerlo de nuevo.\n\n*¿Quieres recibir recompensas tú también?* Usa el comando /recompensas y averigua tu código.\n\n¿Tienes alguna duda? Puedes contactarnos mediante el bot de soporte: @ColeCoinSoporteBot.",
             { parse_mode: "Markdown" }
           );
         }
