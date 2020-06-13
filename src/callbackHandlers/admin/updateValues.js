@@ -34,12 +34,8 @@ module.exports = (bot, db, admins) => {
         );
       })
       .catch(function (error) {
-        // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
+        ctx.reply("Ese ID no existe en la base de datos.");
       });
-    // db.update( { _id : user_id }, { $set : { invitations : new_value } }, {returnUpdatedDocs: true}, (err, numberAffected, user) => {
-    //   ctx.reply("`" + JSON.stringify(user, null, 1) + "`", { parse_mode : "Markdown" })
-    // })
   });
 
   bot.hears(/update has_invited/i, (ctx, next) => {
