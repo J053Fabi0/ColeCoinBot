@@ -76,25 +76,6 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/index.html");
 });
 
-// app.get("/setUser", (req, res) => {
-//     let user_id = "user_id"
-//     // let user_id = req.query.user_id;
-//     // let address = req.query.address;
-
-//     try {
-//         usersRef.doc(user_id).set({
-//             address: "Hola",
-//             user_id: "01409831",
-//             invitations: 0,
-//             has_been_invited: false
-//         });
-//         res.send("Hecho: " + user_id + " ");
-//     }
-//     catch (err) {
-//         res.send(err);
-//     }
-// });
-
 app.listen(process.env.PORT);
 
 // bot.launch();
