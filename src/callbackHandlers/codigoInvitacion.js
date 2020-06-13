@@ -60,7 +60,7 @@ module.exports = (bot, usersRef) => {
             { parse_mode: "Markdown" }
           );
         } else {
-          bot.telegram.editMessageText(
+          await bot.telegram.editMessageText(
             msgInfo.chat.id,
             msgInfo.message_id,
             undefined,
