@@ -46,7 +46,7 @@ module.exports = (bot, usersRef) => {
     }
   });
 
-  bot.action(/recompensado/, (ctx) => {
+  bot.action(/recompensado/, async (ctx) => {
     let texto_boton =
       ctx.update.callback_query.message.reply_markup.inline_keyboard[0][0].text;
 

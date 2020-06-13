@@ -1,5 +1,5 @@
 module.exports = (bot, db) => {
-  bot.action("recargarRecompensasAdmin", (ctx) => {
+  bot.action("recargarRecompensasAdmin", async (ctx) => {
     let chat_id = ctx.update.callback_query.message.chat.id;
 
     if (chat_id == "-1001482751413") {
