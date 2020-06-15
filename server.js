@@ -25,28 +25,43 @@ bot.catch((err, ctx) => {
   console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
 });
 
-// bot.use((ctx, next) => {
-//   // Stickers
-//   // console.log(ctx.update.message.sticker);
-
-//   // GIFs
-//   // console.log(ctx.update.message.animation.file_id);
-//   // ctx.replyWithAnimation(ctx.update.message.animation.file_id, {
-//   //     caption: ctx.update.message.animation.file_id
-//   // });
-
-//   // Images
-//   // console.log(ctx.update.message.photo[0].file_id);
-//   // ctx.replyWithPhoto(ctx.update.message.photo[0].file_id, {
-//   //   caption: ctx.update.message.photo[0].file_id,
-//   // });
-
-//   // console.log(ctx.update);
-//   next(ctx);
-// });
-
 const admins = [861616600, 801112961];
-const testers = [861616600, 843396996, 801112961];
+
+bot.use((ctx, next) => {
+  if (ctx.update.message) {
+    if (admins.includes(ctx.update.message.from.id)) {
+      // Stickers
+      if (ctx.update.message.sticker) {
+        ctx.reply(ctx.update.message.sticker.file_id);
+      }
+
+      // GIFs
+      if (ctx.update.message.animation) {
+        console.log(ctx.update.message.animation.file_id);
+        ctx.replyWithAnimation(ctx.update.message.animation.file_id, {
+          caption: ctx.update.message.animation.file_id,
+        });
+      }
+
+      // Images
+      if (ctx.update.message.photo) {
+        console.log(ctx.update.message.photo[0].file_id);
+        ctx.replyWithPhoto(ctx.update.message.photo[0].file_id, {
+          caption: ctx.update.message.photo[0].file_id,
+        });
+      }
+
+      // Video
+      if (ctx.update.message.video) {
+        console.log(ctx.update.message.video.file_id);
+        ctx.replyWithVideo(ctx.update.message.video.file_id, {
+          caption: ctx.update.message.video.file_id,
+        });
+      }
+    }
+  }
+  next();
+});
 
 const adminControls = require("./src/callbackHandlers/admin/admin");
 adminControls(bot, usersRef, admins);
@@ -78,4 +93,4 @@ app.get("/", (request, response) => {
 
 app.listen(process.env.PORT);
 
-// bot.launch();
+bot.launch();

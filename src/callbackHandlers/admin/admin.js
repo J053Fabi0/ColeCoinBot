@@ -13,7 +13,7 @@ module.exports = (bot, db, admins) => {
 
   bot.hears(/admin/i, (ctx, next) => {
     if (!admins.includes(ctx.update.message.from.id)) {
-      next();
+      next(ctx);
       return;
     }
     let instrucciones =

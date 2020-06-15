@@ -34,18 +34,21 @@ module.exports = (bot, db) => {
 
   bot.action("segundoPaso", (ctx) => {
     ctx.deleteMessage();
-    ctx.reply(tutorial[1], {
-      reply_markup: {
-        inline_keyboard: [
-          [
-            { text: "⬅️ Volver un paso", callback_data: "comenzarTutorial" },
-            { text: "🏠 Volver al inicio", callback_data: "start" },
+    ctx.replyWithVideo(
+      "BAACAgEAAxkBAAIGrl7m9xT0NtgVoF01M14Uh99y-RnyAALfAAMqaThHVeCvW0nPiQ4aBA",
+      {
+        caption: tutorial[1],
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: "⬅️ Volver un paso", callback_data: "comenzarTutorial" },
+              { text: "🏠 Volver al inicio", callback_data: "start" },
+            ],
           ],
-        ],
-      },
-      parse_mode: "Markdown",
-    });
+        },
+        parse_mode: "Markdown",
+      }
+    );
     ctx.answerCbQuery();
   });
 };
-
